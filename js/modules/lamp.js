@@ -15,7 +15,7 @@ function updateLamp() {
   rafId = requestAnimationFrame(updateLamp);
 }
 
-function onMouseMove(e) {
+function onPointerMove(e) {
   targetX = (e.clientX / window.innerWidth) * 100;
   targetY = (e.clientY / window.innerHeight) * 100;
 }
@@ -27,13 +27,16 @@ function onTouchMove(e) {
 }
 
 export function initLamp() {
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('touchmove', onTouchMove, { passive: true });
+  // pointermove fires even during GSAP Draggable operations
+  document.addEventListener('pointermove', onPointerMove, { capture: true, passive: true });
+  document.addEventListener('mousemove', onPointerMove, { capture: true, passive: true });
+  document.addEventListener('touchmove', onTouchMove, { capture: true, passive: true });
   rafId = requestAnimationFrame(updateLamp);
 }
 
 export function destroyLamp() {
-  document.removeEventListener('mousemove', onMouseMove);
+  document.removeEventListener('pointermove', onPointerMove);
+  document.removeEventListener('mousemove', onPointerMove);
   document.removeEventListener('touchmove', onTouchMove);
   if (rafId) cancelAnimationFrame(rafId);
 }
