@@ -1,0 +1,274 @@
+{
+  "meta": {
+    "name": "Tunahan HÜSEM",
+    "title": "Bilgisayar Mühendisi",
+    "lang": "tr"
+  },
+  "folders": [
+    {
+      "id": "personal",
+      "label": "Kişisel Dosya",
+      "tab": "KİŞİSEL",
+      "position": { "x": 8, "y": 12, "rotation": -4 },
+      "color": "#c4a56e",
+      "pages": [
+        {
+          "type": "profile",
+          "heading": "Şüpheli Profili",
+          "content": {
+            "name": "Tunahan HÜSEM",
+            "title": "Bilgisayar Mühendisi",
+            "location": "Türkiye",
+            "about": "Yeni şeyler deneyimlemeyi ve sorunları çözmeyi seven bir yapıya sahibim. Yaşantım boyunca birçok takım sporunda faaliyet gösterdim. Ekip çalışmasına ve insanlarla iletişim söz konusu olduğunda problem yaşamadan uyum sağlayabilirim.",
+            "languages": [
+              { "lang": "İngilizce", "level": "B2" },
+              { "lang": "Almanca", "level": "A2" },
+              { "lang": "Korece", "level": "A1" }
+            ],
+            "hobbies": [
+              "Basketbol (3 Numara)",
+              "Voleybol (4 Numara - Bölge İkinciliği)",
+              "Tiyatro (Başrol - Senarist)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "experience",
+      "label": "İş Deneyimi",
+      "tab": "DENEYİM",
+      "position": { "x": 35, "y": 8, "rotation": 3 },
+      "color": "#b8926a",
+      "pages": [
+        {
+          "type": "timeline",
+          "heading": "Çalışma Kayıtları - Sayfa 1",
+          "items": [
+            {
+              "title": "System and Cloud Engineer",
+              "org": "Armis Bilişim Teknolojileri A.Ş.",
+              "date": "Ocak 2026 - Devam Ediyor",
+              "details": [
+                "Bulut altyapı ve sunucu sistemlerinin sıfırdan kurulumu, mimari yapılandırması ve yönetimi",
+                "UTMStack SIEM başta olmak üzere güvenlik, izleme ve loglama ürünlerinin kurulum ve entegrasyonu",
+                "Açık kaynak kodlu ürünlerde uzman düzeyinde kurulum, optimizasyon ve sistem sıkılaştırma",
+                "Düzenli zafiyet taramaları ve siber güvenlik testleri (sızma testleri)",
+                "Açık kaynaklı yeni sistemlerin araştırılması, test edilmesi ve canlı ortama alınması"
+              ]
+            },
+            {
+              "title": "Cloud Engineer / DevOps Engineer",
+              "org": "Infraguard Siber Güvenlik A.Ş.",
+              "date": "Ağustos 2025 - Ocak 2026",
+              "details": [
+                "Geliştirme ve operasyon süreçlerine entegre güvenlik yaklaşımları uygulama",
+                "Sistem açıklarının tespiti, pentest ve proaktif güvenlik çalışmaları",
+                "Altyapı direnci ve operasyonel güvenlik sağlama"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "timeline",
+          "heading": "Çalışma Kayıtları - Sayfa 2",
+          "items": [
+            {
+              "title": "Cloud Engineer",
+              "org": "NGN Bilgi Teknolojileri Veri Merkezi A.Ş.",
+              "date": "2021 - Ağustos 2025 (4 Yıl)",
+              "details": [
+                "Bulut altyapı kurulumu, optimizasyon, yük dengeleme ve HA çözümleri",
+                "Zabbix, Grafana, Elasticsearch, Graylog ile izleme/log sistemleri yönetimi",
+                "Defacto ve ICA (sıfırdan kurulum), Boyner (optimizasyon) projeleri",
+                "KOBIL projesinde Kubernetes altyapı yönetimi",
+                "HaProxy, Nginx, Apache, MySQL, PostgreSQL, MariaDB yönetimi",
+                "Müşteri ortamları için topoloji çıkartma ve healthcheck raporlama"
+              ]
+            },
+            {
+              "title": "L1 Customer Support Engineer",
+              "org": "NGN Bilgi Teknolojileri Veri Merkezi A.Ş.",
+              "date": "2021 (6 Ay)",
+              "details": [
+                "Zabbix/Grafana yapılandırması, NGN Cloud/AWS sunucu kurulum ve yönetimi",
+                "BSH servis masası dahil kritik müşteri destek taleplerinin yönetimi"
+              ]
+            },
+            {
+              "title": "Stajyer",
+              "org": "NGN Bilgi Teknolojileri Veri Merkezi A.Ş.",
+              "date": "Eylül 2020 (5 Hafta)",
+              "details": [
+                "ESXi, Windows Server, FreeNAS ile sanallaştırma; Acronis ile yedekleme",
+                "Active Directory, Domain Controller, DNS/DHCP yönetimi"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "label": "Eğitim Kayıtları",
+      "tab": "EĞİTİM",
+      "position": { "x": 62, "y": 15, "rotation": -2 },
+      "color": "#a68b5b",
+      "pages": [
+        {
+          "type": "timeline",
+          "heading": "Eğitim Geçmişi",
+          "items": [
+            {
+              "title": "Bilgisayar Mühendisliği",
+              "org": "Namık Kemal Üniversitesi",
+              "date": "2015 - 2021 | GNO: 2.86",
+              "details": [
+                "Basketbol Takımı (3 Numara)",
+                "Voleybol Takımı (4 Numara)",
+                "Tiyatro Kulübü (Başrol - Senarist)"
+              ]
+            },
+            {
+              "title": "Lise",
+              "org": "Borçka Anadolu Lisesi - Artvin",
+              "date": "2011 - 2015 | GNO: 80.60",
+              "details": [
+                "Voleybol Takımı (Bölge İkinciliği)",
+                "Basketbol Takımı"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "label": "Proje Dosyaları",
+      "tab": "PROJELER",
+      "position": { "x": 18, "y": 50, "rotation": 5 },
+      "color": "#d4a853",
+      "pages": [
+        {
+          "type": "cards",
+          "heading": "Proje Kayıtları",
+          "items": [
+            {
+              "title": "Parmak İzi Tanıma",
+              "tech": "MATLAB",
+              "year": "2021",
+              "description": "MATLAB kullanarak, parmak izi tanıyabilen ve kimlik doğrulama üzerine kullanılabilen uygulama geliştirdim."
+            },
+            {
+              "title": "Plaka Okuma Sistemi",
+              "tech": "Python",
+              "year": "2020",
+              "description": "Python programlama dili ile 'tesseract' kütüphanesi kullanarak araçların plakasını tanımlayabilen bir proje."
+            },
+            {
+              "title": "Fabrika Otomasyonu",
+              "tech": "C#",
+              "year": "2019",
+              "description": "Üretim ve stok takibini kolaylaştıran bir otomasyonu ekip çalışması ile tasarladık."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "label": "Yetenekler",
+      "tab": "YETENEK",
+      "position": { "x": 50, "y": 45, "rotation": -3 },
+      "color": "#c9a962",
+      "pages": [
+        {
+          "type": "grid",
+          "heading": "Teknik Beceriler",
+          "categories": [
+            {
+              "name": "Cloud & Sanallaştırma",
+              "items": ["AWS", "Huawei Cloud", "VMware", "Windows Server", "FreeNAS"]
+            },
+            {
+              "name": "İzleme & Loglama",
+              "items": ["Zabbix", "Grafana", "Elasticsearch", "Graylog", "Filebeat"]
+            },
+            {
+              "name": "İşletim Sistemleri",
+              "items": ["Linux", "Windows Server"]
+            },
+            {
+              "name": "Scripting & Programlama",
+              "items": ["Shell Scripting", "Python", "C & C++", "C#", "MATLAB"]
+            },
+            {
+              "name": "Veritabanları",
+              "items": ["MySQL", "PostgreSQL", "MariaDB"]
+            },
+            {
+              "name": "Web & Ağ",
+              "items": ["Nginx", "Apache", "HaProxy", "Active Directory", "DNS/DHCP"]
+            },
+            {
+              "name": "Diğer",
+              "items": ["Acronis", "Topoloji Çıkartma", "UI Design", "Adobe Photoshop", "Video Editleme"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "İletişim",
+      "tab": "İLETİŞİM",
+      "position": { "x": 75, "y": 48, "rotation": 2 },
+      "color": "#b89a5e",
+      "pages": [
+        {
+          "type": "links",
+          "heading": "İletişim Bilgileri",
+          "contact": {
+            "email": "tunahanhusem@gmail.com",
+            "phone": "0(536) 818 82 88"
+          },
+          "reference": {
+            "name": "Sedat NALCACİ",
+            "title": "Customer Support Services Team-Leader",
+            "phone": "0(533) 519 91 71"
+          }
+        }
+      ]
+    },
+    {
+      "id": "secret",
+      "label": "GİZLİ DOSYA",
+      "tab": "???",
+      "position": { "x": 82, "y": 70, "rotation": 8 },
+      "color": "#8b0000",
+      "hidden": true,
+      "pages": [
+        {
+          "type": "secret",
+          "heading": "SINIFLANDIRILMIŞ BİLGİ",
+          "content": {
+            "funFacts": [
+              "3 dil öğreniyor: İngilizce, Almanca ve Korece",
+              "Tiyatroda hem başrol hem senarist",
+              "Voleybolda bölge ikinciliği kazandı",
+              "Açık kaynak tutkunu - sistemleri sıfırdan kurmayı sever",
+              "Bulut mimarisi ve siber güvenlik çift yönlü uzmanlaşma"
+            ],
+            "motto": "Sorunları çözmek benim işim."
+          }
+        }
+      ]
+    }
+  ],
+  "decorations": {
+    "stickyNotes": [
+      { "text": "Şüpheli: Sistem Mühendisi\nDikkat: Tehlikeli derecede yetenekli", "position": { "x": 3, "y": 75 }, "color": "#f7e47a", "rotation": -3 },
+      { "text": "Not: Her şey göründüğü\ngibi değildir...", "position": { "x": 88, "y": 5 }, "color": "#ff9e80", "rotation": 5 }
+    ]
+  }
+}

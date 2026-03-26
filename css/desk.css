@@ -1,0 +1,193 @@
+#desk-surface {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 120px,
+      rgba(0,0,0,0.05) 120px,
+      rgba(0,0,0,0.05) 121px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 200px,
+      rgba(255,255,255,0.01) 200px,
+      rgba(255,255,255,0.01) 201px
+    ),
+    linear-gradient(
+      135deg,
+      #1a1209 0%,
+      #231a0e 25%,
+      #1e1509 50%,
+      #2a1f10 75%,
+      #1a1209 100%
+    );
+  background-color: var(--color-desk);
+}
+
+/* Wood grain effect */
+#desk-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      87deg,
+      transparent,
+      transparent 3px,
+      rgba(60, 40, 15, 0.15) 3px,
+      rgba(60, 40, 15, 0.15) 4px,
+      transparent 4px,
+      transparent 15px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Desk edge shadow */
+#desk-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 2;
+}
+
+#lamp-light {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 700px 600px at var(--mouse-x) var(--mouse-y),
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 30%,
+    rgba(0, 0, 0, 0.4) 55%,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: var(--z-lamp);
+  transition: opacity 0.3s ease;
+}
+
+#folders-container {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-folders);
+}
+
+#decorations-container {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-decorations);
+  pointer-events: none;
+}
+
+/* Intro Overlay */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: var(--z-intro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+#intro-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-content {
+  text-align: center;
+  color: var(--color-paper);
+}
+
+.intro-lamp {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f5d58a 0%, #d4a853 40%, transparent 70%);
+  box-shadow: 0 0 60px 20px rgba(212, 168, 83, 0.3);
+  animation: lamp-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lamp-pulse {
+  0%, 100% { box-shadow: 0 0 60px 20px rgba(212, 168, 83, 0.3); }
+  50% { box-shadow: 0 0 80px 30px rgba(212, 168, 83, 0.5); }
+}
+
+.intro-content h1 {
+  font-family: var(--font-typewriter);
+  font-size: 2.5rem;
+  letter-spacing: 8px;
+  margin-bottom: 15px;
+  color: var(--color-gold);
+  text-shadow: 0 0 30px rgba(212, 168, 83, 0.3);
+}
+
+.intro-subtitle {
+  font-family: var(--font-typewriter);
+  font-size: 1.2rem;
+  color: var(--color-manila);
+  margin-bottom: 8px;
+  letter-spacing: 3px;
+}
+
+.intro-hint {
+  font-family: var(--font-handwritten);
+  font-size: 1.3rem;
+  color: rgba(240, 230, 208, 0.5);
+  margin-bottom: 40px;
+}
+
+#intro-start {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  letter-spacing: 4px;
+  padding: 15px 40px;
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#intro-start:hover {
+  background: var(--color-gold);
+  color: var(--color-ink);
+  box-shadow: 0 0 30px rgba(212, 168, 83, 0.3);
+}
+
+/* Sound toggle */
+#sound-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: var(--z-modal);
+  background: rgba(26, 18, 9, 0.8);
+  border: 1px solid rgba(196, 165, 110, 0.3);
+  color: var(--color-manila);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+#sound-toggle:hover {
+  border-color: var(--color-gold);
+  background: rgba(26, 18, 9, 0.95);
+}

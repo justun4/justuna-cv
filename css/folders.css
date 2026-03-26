@@ -1,0 +1,136 @@
+.folder {
+  position: absolute;
+  width: 180px;
+  height: 130px;
+  cursor: grab;
+  transition: box-shadow 0.3s ease;
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.folder:active {
+  cursor: grabbing;
+}
+
+.folder:hover {
+  filter: drop-shadow(2px 4px 12px rgba(0, 0, 0, 0.7));
+}
+
+.folder:hover .folder-body {
+  transform: translateY(-3px);
+}
+
+/* Folder tab */
+.folder-tab {
+  position: absolute;
+  top: -22px;
+  left: 15px;
+  width: 100px;
+  height: 26px;
+  background: var(--folder-color, var(--color-manila));
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.folder-tab span {
+  font-family: var(--font-typewriter);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--color-ink);
+  font-weight: bold;
+}
+
+/* Folder body */
+.folder-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--folder-color, var(--color-manila));
+  border-radius: 2px 8px 4px 4px;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+/* Folder inner shadow & texture */
+.folder-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Folder paper peek */
+.folder-body::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  height: 15px;
+  background: var(--color-paper);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* Folder label */
+.folder-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  font-family: var(--font-typewriter);
+  font-size: 0.7rem;
+  color: var(--color-ink-faded);
+  letter-spacing: 1px;
+}
+
+/* Secret folder extra styling */
+.folder.secret-folder {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.folder.secret-folder.revealed {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.folder.secret-folder .folder-body {
+  background: #8b0000;
+  border: 1px solid #a00;
+}
+
+.folder.secret-folder .folder-tab {
+  background: #8b0000;
+}
+
+.folder.secret-folder .folder-tab span,
+.folder.secret-folder .folder-label {
+  color: #ffd700;
+}
+
+/* Folder stamp */
+.folder-stamp {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  font-family: var(--font-typewriter);
+  font-size: 0.55rem;
+  color: var(--color-red-stamp);
+  border: 2px solid var(--color-red-stamp);
+  padding: 2px 6px;
+  transform: rotate(-12deg);
+  opacity: 0.7;
+  letter-spacing: 1px;
+}

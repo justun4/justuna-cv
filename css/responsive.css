@@ -1,0 +1,113 @@
+@media (max-width: 768px) {
+  .intro-content h1 {
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+  }
+
+  .intro-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .intro-hint {
+    font-size: 1rem;
+  }
+
+  #intro-start {
+    font-size: 0.8rem;
+    padding: 12px 30px;
+  }
+
+  .folder {
+    width: 150px;
+    height: 110px;
+  }
+
+  .folder-tab {
+    width: 85px;
+    height: 22px;
+    top: -18px;
+  }
+
+  .folder-tab span {
+    font-size: 0.5rem;
+  }
+
+  .folder-label {
+    font-size: 0.6rem;
+  }
+
+  #document-modal {
+    width: 95vw;
+    max-height: 90vh;
+  }
+
+  #doc-header {
+    padding: 18px 20px 12px;
+  }
+
+  #doc-header h2 {
+    font-size: 1rem;
+  }
+
+  #doc-pages-container {
+    padding: 18px 20px;
+  }
+
+  .doc-page {
+    font-size: 0.78rem;
+  }
+
+  #doc-nav {
+    padding: 10px 20px;
+  }
+
+  .sticky-note {
+    width: 110px;
+    font-size: 0.8rem;
+    padding: 10px 8px;
+  }
+
+  .coffee-mug {
+    width: 50px;
+    height: 50px;
+  }
+
+  .desk-pen {
+    width: 90px;
+  }
+
+  #lamp-light {
+    background: radial-gradient(
+      ellipse 400px 350px at var(--mouse-x) var(--mouse-y),
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 30%,
+      rgba(0, 0, 0, 0.5) 55%,
+      rgba(0, 0, 0, 0.75) 80%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .folder {
+    width: 130px;
+    height: 95px;
+  }
+
+  .folder-tab {
+    width: 72px;
+    height: 20px;
+    top: -16px;
+  }
+
+  .folder-stamp {
+    display: none;
+  }
+
+  .coffee-mug,
+  .desk-pen,
+  .paper-clip,
+  .coffee-stain {
+    display: none;
+  }
+}

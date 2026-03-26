@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tunahan HÜSEM - Dedektif Masası CV</title>
+  <meta name="description" content="Tunahan HÜSEM - Bilgisayar Mühendisi. İnteraktif dedektif masası portfolyo.">
+  <meta property="og:title" content="Tunahan HÜSEM - Detective Desk CV">
+  <meta property="og:description" content="Masadaki dosyaları inceleyerek beni tanıyın.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/desk.css">
+  <link rel="stylesheet" href="/css/folders.css">
+  <link rel="stylesheet" href="/css/documents.css">
+  <link rel="stylesheet" href="/css/decorations.css">
+  <link rel="stylesheet" href="/css/puzzle.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div id="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-lamp"></div>
+      <h1>DOSYA İNCELEME MASASI</h1>
+      <p class="intro-subtitle">Şüpheli: Tunahan HÜSEM</p>
+      <p class="intro-hint">Masadaki dosyaları açarak soruşturmaya başlayın</p>
+      <button id="intro-start">SORUŞTURMAYI BAŞLAT</button>
+    </div>
+  </div>
+
+  <div id="desk-surface">
+    <div id="lamp-light"></div>
+    <div id="folders-container"></div>
+    <div id="decorations-container"></div>
+
+    <!-- Puzzle: Interactive coffee mug + hidden button -->
+    <div id="puzzle-mug" class="puzzle-mug">
+      <div class="mug-steam"><span></span><span></span><span></span></div>
+    </div>
+    <div id="hidden-button" class="hidden-button">
+      <div class="btn-icon">&#9881;</div>
+      <div class="btn-label">?</div>
+    </div>
+
+    <!-- Puzzle: Interactive USB drive -->
+    <div id="puzzle-usb" class="puzzle-usb">
+      <div class="usb-body">
+        <div class="usb-logo">&#9735;</div>
+      </div>
+      <div class="usb-connector"></div>
+      <div class="usb-led"></div>
+    </div>
+
+    <!-- Puzzle: Secret access panel -->
+    <div id="puzzle-overlay" class="puzzle-overlay hidden"></div>
+    <div id="secret-panel" class="secret-panel hidden">
+      <button id="panel-close" class="panel-close">&times;</button>
+      <div class="panel-header">
+        <div class="panel-icon">&#128274;</div>
+        <h3>GİZLİ ERİŞİM TERMİNALİ</h3>
+      </div>
+      <div class="terminal-lines">
+        <div class="term-line" data-delay="0">$ sistem_tarama --başlat</div>
+        <div class="term-line" data-delay="600">> Cihaz algılandı...</div>
+        <div class="term-line" data-delay="1200">> Yetkilendirme gerekli.</div>
+        <div class="term-line" data-delay="1800">> USB anahtar bekleniyor...</div>
+      </div>
+      <div id="usb-slot" class="usb-slot">
+        <div class="slot-port"></div>
+        <span class="slot-label">USB ANAHTARI TAK</span>
+      </div>
+      <div class="terminal-post hidden" id="terminal-post">
+        <div class="term-line success">> USB doğrulandı.</div>
+        <div class="term-line success">> Kimlik: TUNAHAN HÜSEM</div>
+        <div class="term-line success">> Yetki seviyesi: TAM ERİŞİM</div>
+        <div class="term-line success">> Gizli dosya kilidi açılıyor...</div>
+      </div>
+      <p id="panel-status" class="panel-status">ERİŞİM BEKLENİYOR...</p>
+    </div>
+    <div id="document-overlay" class="hidden">
+      <div id="document-modal">
+        <button id="doc-close" title="Kapat">&times;</button>
+        <div id="doc-header"></div>
+        <div id="doc-pages-container">
+          <div id="doc-pages"></div>
+        </div>
+        <div id="doc-nav">
+          <button id="doc-prev" class="doc-nav-btn" disabled>&laquo; Önceki</button>
+          <span id="doc-page-info"></span>
+          <button id="doc-next" class="doc-nav-btn">Sonraki &raquo;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="sound-toggle" title="Ses Aç/Kapa">
+    <span class="sound-on">&#128266;</span>
+    <span class="sound-off hidden">&#128263;</span>
+  </button>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

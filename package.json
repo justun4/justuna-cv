@@ -1,0 +1,17 @@
+{
+  "name": "detective-desk-cv",
+  "version": "1.0.0",
+  "description": "Interactive Detective Desk CV Portfolio - Tunahan HÜSEM",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.7"
+  }
+}
