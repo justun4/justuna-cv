@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
+import { playSound, stopSound } from './sounds.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -20,6 +21,7 @@ export function initDraggable(folderElements) {
         el.style.zIndex = getNextZ();
       },
       onDragStart() {
+        playSound('paper-shuffle');
         gsap.to(el, {
           scale: 1.05,
           boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
@@ -27,6 +29,7 @@ export function initDraggable(folderElements) {
         });
       },
       onDragEnd() {
+        stopSound('paper-shuffle');
         gsap.to(el, {
           scale: 1,
           boxShadow: 'none',

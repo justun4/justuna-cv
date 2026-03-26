@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
-import { playSound } from './sounds.js';
+import { playSound, stopSound } from './sounds.js';
 import { openDocument } from './documents.js';
 import { getNextZ } from './desk.js';
 
@@ -26,7 +26,49 @@ export function initPuzzle(secretFolderData) {
   // Store for later
   window.__secretFolderData = secretFolderData;
 
-  // Step 1: Make coffee mug draggable (always on top)
+  // Coffee level system (5 sips to empty, click to refill)
+  let coffeeLevel = 5;
+  const coffeeEl = mug.querySelector('.mug-coffee');
+  let isDragging = false;
+
+  function updateCoffeeVisual() {
+    if (!coffeeEl) return;
+    const pct = coffeeLevel / 5;
+    const maxSize = 64; // full coffee diameter
+    const minSize = 10;
+    const size = minSize + (maxSize - minSize) * pct;
+    const offset = (maxSize - size) / 2;
+    coffeeEl.style.width = `${size}px`;
+    coffeeEl.style.height = `${size}px`;
+    coffeeEl.style.top = `${15 + offset}px`;
+    coffeeEl.style.left = `${9 + offset}px`;
+    coffeeEl.style.opacity = pct < 0.1 ? '0.3' : '1';
+  }
+
+  mug.addEventListener('click', (e) => {
+    if (isDragging) return;
+    e.stopPropagation();
+
+    if (coffeeLevel > 0) {
+      // Sip coffee
+      coffeeLevel--;
+      playSound('sip-coffee');
+      updateCoffeeVisual();
+    } else {
+      // Refill
+      playSound('coffee-pour');
+      // Gradually refill over the sound duration
+      let step = 0;
+      const refillInterval = setInterval(() => {
+        step++;
+        coffeeLevel = step;
+        updateCoffeeVisual();
+        if (step >= 5) clearInterval(refillInterval);
+      }, 400);
+    }
+  });
+
+  // Step 1: Make coffee mug draggable
   mugDraggable = Draggable.create(mug, {
     type: 'x,y',
     bounds: '#desk-surface',
@@ -34,16 +76,22 @@ export function initPuzzle(secretFolderData) {
     activeCursor: 'grabbing',
     onPress() {
       mug.style.zIndex = getNextZ();
+      isDragging = false;
     },
     onDragStart() {
+      isDragging = true;
+      playSound('desk-object');
       gsap.to(mug, { scale: 1.1, duration: 0.2 });
     },
     onDrag() {
       checkMugPosition();
     },
     onDragEnd() {
+      stopSound('desk-object');
       gsap.to(mug, { scale: 1, duration: 0.2 });
       checkMugPosition();
+      // Reset drag flag after a tick so click doesn't fire
+      setTimeout(() => { isDragging = false; }, 50);
     },
   })[0];
 
@@ -51,7 +99,7 @@ export function initPuzzle(secretFolderData) {
   hiddenButton.addEventListener('click', () => {
     if (puzzleState.buttonPressed) return;
     puzzleState.buttonPressed = true;
-    playSound('folder-open');
+    playSound('button-click');
 
     gsap.to(hiddenButton, {
       scale: 0.9, duration: 0.1, yoyo: true, repeat: 1,
@@ -70,6 +118,7 @@ export function initPuzzle(secretFolderData) {
     cursor: 'grab',
     activeCursor: 'grabbing',
     onDragStart() {
+      playSound('desk-object');
       gsap.to(usb, { scale: 1.15, duration: 0.15 });
     },
     onDrag() {
@@ -78,6 +127,7 @@ export function initPuzzle(secretFolderData) {
       }
     },
     onDragEnd() {
+      stopSound('desk-object');
       gsap.to(usb, { scale: 1, duration: 0.15 });
       usb.style.zIndex = '10';
       if (puzzleState.buttonPressed && !puzzleState.usbInserted) {
@@ -124,7 +174,7 @@ function openCompartment() {
     activeCursor: 'grabbing',
     onDragEnd() {
       if (Math.abs(this.x) > 120) {
-        // Fully open - slide rest of the way
+        playSound('slide-open');
         gsap.to(lid, {
           x: -270, duration: 0.3, ease: 'power2.out',
           onComplete() {
@@ -142,6 +192,9 @@ function openCompartment() {
 
 function startTerminalSequence() {
   const compartment = document.getElementById('desk-compartment');
+
+  // Play terminal typing sound
+  playSound('terminal-type');
 
   // Animate terminal lines
   const lines = compartment.querySelectorAll('.terminal-lines .term-line');
@@ -188,7 +241,7 @@ function checkUsbInPort(dropped) {
     port.classList.add('port-filled');
     usb.classList.remove('usb-hint');
     usb.classList.add('usb-active', 'usb-inserted');
-    playSound('folder-open');
+    playSound('usb-insert');
 
     if (usbDraggable) usbDraggable.disable();
 
@@ -247,6 +300,7 @@ function runUnlockSequence() {
 
   setTimeout(() => {
     statusText.textContent = 'ERİŞİM SAĞLANDI';
+    playSound('access-granted');
     statusText.classList.add('access-granted');
   }, totalDelay);
 
@@ -352,9 +406,11 @@ function makeSecretFolderDraggable() {
       folderEl.style.zIndex = getNextZ();
     },
     onDragStart() {
+      playSound('paper-shuffle');
       gsap.to(folderEl, { scale: 1.05, duration: 0.2 });
     },
     onDragEnd() {
+      stopSound('paper-shuffle');
       gsap.to(folderEl, { scale: 1, duration: 0.3, ease: 'power2.out' });
     },
   });

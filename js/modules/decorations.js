@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
+import { playSound, stopSound } from './sounds.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -22,10 +23,10 @@ export function initDecorations(decorData) {
   }
 
   // Make all decoration items draggable
-  draggableItems.forEach(el => makeDraggable(el));
+  draggableItems.forEach(({ el, sound }) => makeDraggable(el, sound));
 }
 
-function makeDraggable(el) {
+function makeDraggable(el, soundName = null) {
   Draggable.create(el, {
     type: 'x,y',
     bounds: '#desk-surface',
@@ -34,12 +35,18 @@ function makeDraggable(el) {
     onPress() {
       el.style.zIndex = getNextZ();
     },
+    onDragStart() {
+      if (soundName) playSound(soundName);
+    },
+    onDragEnd() {
+      if (soundName) stopSound(soundName);
+    },
   });
 }
 
-function addToDesk(el) {
+function addToDesk(el, sound = null) {
   container.appendChild(el);
-  draggableItems.push(el);
+  draggableItems.push({ el, sound });
 }
 
 function createPen(x, y, rotation) {
@@ -48,7 +55,7 @@ function createPen(x, y, rotation) {
   pen.style.left = `${x}%`;
   pen.style.top = `${y}%`;
   pen.style.transform = `rotate(${rotation}deg)`;
-  addToDesk(pen);
+  addToDesk(pen, 'desk-object');
 }
 
 function createSmartphone(x, y, rotation) {
@@ -85,7 +92,7 @@ function createSmartphone(x, y, rotation) {
 
   phone.appendChild(screen);
   phone.appendChild(notch);
-  addToDesk(phone);
+  addToDesk(phone, 'desk-object');
 }
 
 function createMagnifier(x, y, rotation) {
@@ -94,7 +101,7 @@ function createMagnifier(x, y, rotation) {
   mag.style.left = `${x}%`;
   mag.style.top = `${y}%`;
   mag.style.transform = `rotate(${rotation}deg)`;
-  addToDesk(mag);
+  addToDesk(mag, 'desk-object');
 }
 
 function createStapler(x, y, rotation) {
@@ -104,7 +111,7 @@ function createStapler(x, y, rotation) {
   stapler.style.top = `${y}%`;
   stapler.style.transform = `rotate(${rotation}deg)`;
   stapler.innerHTML = '<div class="stapler-front"></div>';
-  addToDesk(stapler);
+  addToDesk(stapler, 'desk-object');
 }
 
 function createWalkieTalkie(x, y, rotation) {
@@ -116,7 +123,7 @@ function createWalkieTalkie(x, y, rotation) {
   let keys = '';
   for (let i = 0; i < 12; i++) keys += '<div class="wt-key"></div>';
   wt.innerHTML = `<div class="wt-speaker"></div><div class="wt-screen"></div><div class="wt-keypad">${keys}</div><div class="wt-side"></div>`;
-  addToDesk(wt);
+  addToDesk(wt, 'desk-object');
 }
 
 function createClock(x, y) {
@@ -138,7 +145,7 @@ function createClock(x, y) {
   updateTime();
   setInterval(updateTime, 1000);
   clock.appendChild(display);
-  addToDesk(clock);
+  addToDesk(clock, 'desk-object');
 }
 
 function createStickyNote(text, x, y, color, rotation = 0) {
@@ -149,5 +156,5 @@ function createStickyNote(text, x, y, color, rotation = 0) {
   note.style.backgroundColor = color;
   note.style.transform = `rotate(${rotation}deg)`;
   note.textContent = text;
-  addToDesk(note);
+  addToDesk(note, 'note-shuffle');
 }
