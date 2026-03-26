@@ -133,8 +133,11 @@ function showPanel() {
     }, delay + 300);
   });
 
-  // Highlight USB with glow
+  // Elevate USB above overlay so it can be dragged onto the slot
   const usb = document.getElementById('puzzle-usb');
+  usb.style.zIndex = '200';
+
+  // Highlight USB with glow
   setTimeout(() => {
     usb.classList.add('usb-hint');
   }, 2500);
