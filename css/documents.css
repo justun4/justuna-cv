@@ -71,7 +71,7 @@
   display: inline-block;
   margin-top: 5px;
   font-family: var(--font-typewriter);
-  font-size: 0.65rem;
+  font-size: 1.05rem;
   color: var(--color-red-stamp);
   border: 2px solid var(--color-red-stamp);
   padding: 2px 8px;
@@ -99,8 +99,8 @@
 .doc-page {
   color: var(--color-ink);
   font-family: var(--font-typewriter);
-  line-height: 1.7;
-  font-size: 0.85rem;
+  line-height: 1.8;
+  font-size: 1.15rem;
 }
 
 /* Profile page type */
@@ -118,13 +118,13 @@
 }
 
 .doc-page.type-profile .profile-title {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: var(--color-ink-faded);
   letter-spacing: 2px;
 }
 
 .doc-page .section-title {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   letter-spacing: 3px;
   color: var(--color-red-stamp);
   border-bottom: 1px solid var(--color-ink-faded);
@@ -135,7 +135,7 @@
 
 .doc-page .about-text {
   font-family: var(--font-typewriter);
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   color: var(--color-ink);
   margin-bottom: 15px;
@@ -150,7 +150,7 @@
 
 .lang-list li, .hobby-list li {
   padding: 4px 0;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: var(--color-ink-faded);
 }
 
@@ -177,20 +177,20 @@
 }
 
 .timeline-item .tl-title {
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: var(--color-ink);
   letter-spacing: 1px;
 }
 
 .timeline-item .tl-org {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: var(--color-red-stamp);
   margin: 3px 0;
 }
 
 .timeline-item .tl-date {
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   color: var(--color-ink-faded);
   letter-spacing: 2px;
   margin-bottom: 8px;
@@ -202,7 +202,7 @@
 }
 
 .timeline-item .tl-details li {
-  font-size: 0.78rem;
+  font-size: 1.05rem;
   color: var(--color-ink-faded);
   padding: 3px 0 3px 15px;
   position: relative;
@@ -233,19 +233,19 @@
 }
 
 .project-card .pc-title {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: var(--color-ink);
 }
 
 .project-card .pc-meta {
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   color: var(--color-red-stamp);
   letter-spacing: 1px;
 }
 
 .project-card .pc-desc {
-  font-size: 0.78rem;
+  font-size: 1.05rem;
   color: var(--color-ink-faded);
   line-height: 1.6;
 }
@@ -256,7 +256,7 @@
 }
 
 .skill-category .sc-name {
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   letter-spacing: 2px;
   color: var(--color-red-stamp);
   margin-bottom: 8px;
@@ -271,7 +271,7 @@
 
 .skill-tag {
   font-family: var(--font-typewriter);
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   padding: 4px 10px;
   background: rgba(26, 18, 9, 0.08);
   border: 1px solid rgba(58, 48, 32, 0.25);
@@ -286,7 +286,7 @@
 }
 
 .contact-section h3 {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   letter-spacing: 3px;
   color: var(--color-red-stamp);
   margin-bottom: 10px;
@@ -298,13 +298,13 @@
   align-items: center;
   gap: 10px;
   padding: 8px 0;
-  font-size: 0.82rem;
+  font-size: 1.1rem;
   color: var(--color-ink);
 }
 
 .contact-item .ci-label {
   min-width: 80px;
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   letter-spacing: 2px;
   color: var(--color-ink-faded);
 }
@@ -325,7 +325,7 @@
 .doc-page.type-secret .secret-warning {
   text-align: center;
   color: var(--color-red-stamp);
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   letter-spacing: 4px;
   margin-bottom: 20px;
   padding: 10px;
@@ -340,7 +340,7 @@
 
 .fun-fact {
   padding: 8px 0 8px 20px;
-  font-size: 0.82rem;
+  font-size: 1.1rem;
   color: var(--color-ink);
   position: relative;
   line-height: 1.6;
@@ -376,7 +376,7 @@
 
 .doc-nav-btn {
   font-family: var(--font-typewriter);
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   padding: 8px 16px;
   background: transparent;
@@ -397,7 +397,7 @@
 }
 
 #doc-page-info {
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   color: var(--color-ink-faded);
   letter-spacing: 2px;
 }

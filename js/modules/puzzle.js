@@ -66,6 +66,7 @@ export function initPuzzle(secretFolderData) {
   usbDraggable = Draggable.create(usb, {
     type: 'x,y',
     bounds: '#desk-surface',
+    zIndexBoost: false,
     cursor: 'grab',
     activeCursor: 'grabbing',
     onDragStart() {
@@ -78,6 +79,7 @@ export function initPuzzle(secretFolderData) {
     },
     onDragEnd() {
       gsap.to(usb, { scale: 1, duration: 0.15 });
+      usb.style.zIndex = '10';
       if (puzzleState.buttonPressed && !puzzleState.usbInserted) {
         checkUsbInPort(true);
       }
