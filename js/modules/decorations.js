@@ -9,7 +9,7 @@ const draggableItems = [];
 
 export function initDecorations(decorData) {
   createPen(30, 85, 35);
-  createClock(85, 75);
+  createClock(42, 3);
   createSmartphone(3, 12, -15);
   createMagnifier(88, 25, -30);
   createStapler(60, 90, 10);
