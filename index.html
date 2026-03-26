@@ -36,11 +36,53 @@
 
     <!-- Puzzle: Interactive coffee mug + hidden button -->
     <div id="puzzle-mug" class="puzzle-mug">
+      <div class="mug-coffee"></div>
       <div class="mug-steam"><span></span><span></span><span></span></div>
     </div>
-    <div id="hidden-button" class="hidden-button">
-      <div class="btn-icon">&#9881;</div>
-      <div class="btn-label">?</div>
+    <div id="hidden-button" class="hidden-button"></div>
+
+    <!-- Puzzle: Desk compartment with sliding lid -->
+    <div id="desk-compartment" class="desk-compartment hidden">
+      <!-- The sliding lid (wood surface) -->
+      <div id="compartment-lid" class="compartment-lid">
+        <div class="lid-groove"></div>
+        <div class="lid-groove"></div>
+      </div>
+      <!-- Terminal screen embedded in desk -->
+      <div class="compartment-inside">
+        <div class="embedded-screen">
+          <div class="terminal-lines">
+            <div class="term-line" data-delay="0">$ sistem_tarama --başlat</div>
+            <div class="term-line" data-delay="600">> Cihaz algılandı...</div>
+            <div class="term-line" data-delay="1200">> Yetkilendirme gerekli.</div>
+            <div class="term-line" data-delay="1800">> USB anahtar bekleniyor...</div>
+          </div>
+          <div class="terminal-post hidden" id="terminal-post">
+            <div class="term-line success">> USB doğrulandı.</div>
+            <div class="term-line success">> Kimlik: TUNAHAN HÜSEM</div>
+            <div class="term-line success">> Yetki seviyesi: TAM ERİŞİM</div>
+            <div class="term-line success">> Gizli dosya kilidi açılıyor...</div>
+          </div>
+          <div id="panel-status" class="panel-status">ERİŞİM BEKLENİYOR...</div>
+        </div>
+        <!-- USB port embedded in compartment wall -->
+        <div id="usb-port" class="usb-port">
+          <div class="port-hole"></div>
+          <div class="port-label">USB</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Puzzle: Second sliding panel for secret folder -->
+    <div id="secret-compartment" class="secret-compartment hidden">
+      <div id="secret-lid" class="secret-lid">
+        <div class="lid-groove"></div>
+        <span class="lid-text">GİZLİ</span>
+        <div class="lid-groove"></div>
+      </div>
+      <div class="secret-inside" id="secret-inside">
+        <!-- Secret folder appears here -->
+      </div>
     </div>
 
     <!-- Puzzle: Interactive USB drive -->
@@ -50,33 +92,6 @@
       </div>
       <div class="usb-connector"></div>
       <div class="usb-led"></div>
-    </div>
-
-    <!-- Puzzle: Secret access panel -->
-    <div id="puzzle-overlay" class="puzzle-overlay hidden"></div>
-    <div id="secret-panel" class="secret-panel hidden">
-      <button id="panel-close" class="panel-close">&times;</button>
-      <div class="panel-header">
-        <div class="panel-icon">&#128274;</div>
-        <h3>GİZLİ ERİŞİM TERMİNALİ</h3>
-      </div>
-      <div class="terminal-lines">
-        <div class="term-line" data-delay="0">$ sistem_tarama --başlat</div>
-        <div class="term-line" data-delay="600">> Cihaz algılandı...</div>
-        <div class="term-line" data-delay="1200">> Yetkilendirme gerekli.</div>
-        <div class="term-line" data-delay="1800">> USB anahtar bekleniyor...</div>
-      </div>
-      <div id="usb-slot" class="usb-slot">
-        <div class="slot-port"></div>
-        <span class="slot-label">USB ANAHTARI TAK</span>
-      </div>
-      <div class="terminal-post hidden" id="terminal-post">
-        <div class="term-line success">> USB doğrulandı.</div>
-        <div class="term-line success">> Kimlik: TUNAHAN HÜSEM</div>
-        <div class="term-line success">> Yetki seviyesi: TAM ERİŞİM</div>
-        <div class="term-line success">> Gizli dosya kilidi açılıyor...</div>
-      </div>
-      <p id="panel-status" class="panel-status">ERİŞİM BEKLENİYOR...</p>
     </div>
     <div id="document-overlay" class="hidden">
       <div id="document-modal">

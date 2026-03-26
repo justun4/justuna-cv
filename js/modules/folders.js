@@ -10,14 +10,11 @@ export function initFolders(foldersData) {
   folderElements = [];
 
   foldersData.forEach(folder => {
+    // Skip secret folder - handled by puzzle system
+    if (folder.hidden) return;
+
     const el = createFolderElement(folder);
     container.appendChild(el);
-
-    if (folder.hidden) {
-      el.classList.add('secret-folder');
-      secretFolder = el;
-    }
-
     folderElements.push({ el, data: folder });
   });
 

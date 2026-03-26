@@ -18,22 +18,27 @@
   }
 
   .folder {
-    width: 150px;
-    height: 110px;
+    width: 130px;
+    height: 95px;
   }
 
   .folder-tab {
-    width: 85px;
-    height: 22px;
-    top: -18px;
+    width: 75px;
+    height: 20px;
+    top: -16px;
   }
 
   .folder-tab span {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
 
   .folder-label {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
+  }
+
+  .folder-stamp {
+    font-size: 0.4rem;
+    padding: 1px 4px;
   }
 
   #document-modal {
@@ -42,43 +47,142 @@
   }
 
   #doc-header {
-    padding: 18px 20px 12px;
+    padding: 15px 15px 10px;
   }
 
   #doc-header h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   #doc-pages-container {
-    padding: 18px 20px;
+    padding: 15px;
   }
 
   .doc-page {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
 
   #doc-nav {
-    padding: 10px 20px;
+    padding: 8px 15px;
   }
 
+  /* Sticky notes */
   .sticky-note {
-    width: 110px;
-    font-size: 0.8rem;
+    width: 120px;
+    font-size: 0.85rem;
     padding: 10px 8px;
   }
 
-  .coffee-mug {
-    width: 50px;
-    height: 50px;
-  }
-
+  /* Decorations scale down */
   .desk-pen {
     width: 90px;
+    height: 6px;
+  }
+
+  .desk-pen::before { width: 65px; height: 6px; }
+  .desk-pen::after { width: 25px; height: 6px; }
+
+  .rotary-phone {
+    width: 55px;
+    height: 60px;
+  }
+
+  .phone-dial {
+    width: 30px;
+    height: 30px;
+    top: 8px;
+  }
+
+  .phone-cradle {
+    width: 40px;
+    height: 8px;
+  }
+
+  .magnifier {
+    width: 32px;
+    height: 55px;
+  }
+
+  .magnifier::before {
+    width: 28px;
+    height: 28px;
+    border-width: 2px;
+  }
+
+  .magnifier::after {
+    width: 5px;
+    height: 28px;
+    left: 12px;
+  }
+
+  .stapler {
+    width: 45px;
+    height: 16px;
+  }
+
+  .stapler::before { height: 9px; width: 45px; }
+  .stapler::after { height: 7px; width: 40px; }
+
+  .desk-clock {
+    width: 60px;
+    height: 30px;
+  }
+
+  .clock-display {
+    font-size: 0.75rem;
+  }
+
+  /* Puzzle elements */
+  .puzzle-mug {
+    width: 70px;
+    height: 70px;
+  }
+
+  .puzzle-mug::before {
+    width: 55px;
+    height: 55px;
+  }
+
+  .puzzle-mug::after {
+    width: 14px;
+    height: 28px;
+    top: 18px;
+    border-width: 3px;
+  }
+
+  .mug-coffee {
+    top: 12px;
+    left: 7px;
+    width: 43px;
+    height: 43px;
+  }
+
+  .puzzle-usb {
+    width: 45px;
+    height: 18px;
+  }
+
+  .usb-body { width: 30px; height: 18px; }
+  .usb-connector { width: 13px; height: 13px; top: 2.5px; }
+
+  .hidden-button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .desk-compartment {
+    width: 200px;
+    height: 130px;
+  }
+
+  .secret-compartment {
+    width: 170px;
+    height: 155px;
   }
 
   #lamp-light {
     background: radial-gradient(
-      ellipse 400px 350px at var(--mouse-x) var(--mouse-y),
+      ellipse 350px 300px at var(--mouse-x) var(--mouse-y),
       transparent 0%,
       rgba(0, 0, 0, 0.2) 30%,
       rgba(0, 0, 0, 0.5) 55%,
@@ -90,24 +194,80 @@
 
 @media (max-width: 480px) {
   .folder {
-    width: 130px;
-    height: 95px;
+    width: 110px;
+    height: 80px;
   }
 
   .folder-tab {
-    width: 72px;
-    height: 20px;
-    top: -16px;
+    width: 62px;
+    height: 18px;
+    top: -14px;
+  }
+
+  .folder-tab span {
+    font-size: 0.4rem;
   }
 
   .folder-stamp {
     display: none;
   }
 
-  .coffee-mug,
-  .desk-pen,
-  .paper-clip,
-  .coffee-stain {
+  .sticky-note {
+    width: 100px;
+    font-size: 0.75rem;
+    padding: 8px 6px;
+  }
+
+  /* Hide complex decorations on small screens */
+  .rotary-phone,
+  .magnifier,
+  .stapler {
     display: none;
+  }
+
+  .desk-pen {
+    width: 70px;
+  }
+
+  .desk-clock {
+    width: 55px;
+    height: 26px;
+  }
+
+  .clock-display {
+    font-size: 0.65rem;
+  }
+
+  .puzzle-mug {
+    width: 55px;
+    height: 55px;
+  }
+
+  .puzzle-mug::before {
+    width: 42px;
+    height: 42px;
+  }
+
+  .puzzle-mug::after {
+    width: 12px;
+    height: 22px;
+    top: 15px;
+  }
+
+  .mug-coffee {
+    top: 10px;
+    left: 6px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .desk-compartment {
+    width: 170px;
+    height: 110px;
+  }
+
+  .secret-compartment {
+    width: 145px;
+    height: 130px;
   }
 }

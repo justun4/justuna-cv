@@ -78,6 +78,7 @@
   position: absolute;
   inset: 0;
   z-index: var(--z-folders);
+  pointer-events: none;
 }
 
 #decorations-container {
@@ -85,6 +86,10 @@
   inset: 0;
   z-index: var(--z-decorations);
   pointer-events: none;
+}
+
+#decorations-container > * {
+  pointer-events: auto;
 }
 
 /* Intro Overlay */

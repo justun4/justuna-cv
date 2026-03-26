@@ -1,8 +1,9 @@
 .folder {
   position: absolute;
-  width: 180px;
-  height: 130px;
+  width: clamp(130px, 14vw, 200px);
+  height: clamp(95px, 10vw, 145px);
   cursor: grab;
+  pointer-events: auto;
   transition: box-shadow 0.3s ease;
   filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.5));
 }
@@ -12,11 +13,7 @@
 }
 
 .folder:hover {
-  filter: drop-shadow(2px 4px 12px rgba(0, 0, 0, 0.7));
-}
-
-.folder:hover .folder-body {
-  transform: translateY(-3px);
+  filter: drop-shadow(4px 8px 16px rgba(0, 0, 0, 0.8));
 }
 
 /* Folder tab */
@@ -49,7 +46,6 @@
   height: 100%;
   background: var(--folder-color, var(--color-manila));
   border-radius: 2px 8px 4px 4px;
-  transition: transform 0.2s ease;
   overflow: hidden;
 }
 

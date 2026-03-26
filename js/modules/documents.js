@@ -185,23 +185,29 @@ function renderLinks(page) {
   }
   html += `</div>`;
 
-  if (page.reference) {
-    html += `
-      <div class="contact-section">
-        <h3>Referans</h3>
+  if (page.references) {
+    html += `<div class="contact-section"><h3>Referanslar</h3>`;
+    page.references.forEach(ref => {
+      html += `
         <div class="contact-item">
           <span class="ci-label">İSİM</span>
-          <span>${page.reference.name}</span>
-        </div>
+          <span>${ref.name}</span>
+        </div>`;
+      if (ref.title) {
+        html += `
         <div class="contact-item">
           <span class="ci-label">ÜNVAN</span>
-          <span>${page.reference.title}</span>
-        </div>
+          <span>${ref.title}</span>
+        </div>`;
+      }
+      html += `
         <div class="contact-item">
           <span class="ci-label">TELEFON</span>
-          <span>${page.reference.phone}</span>
+          <span>${ref.phone}</span>
         </div>
-      </div>`;
+        <hr style="border:none;border-top:1px dashed rgba(58,48,32,0.2);margin:10px 0;">`;
+    });
+    html += `</div>`;
   }
 
   return html;

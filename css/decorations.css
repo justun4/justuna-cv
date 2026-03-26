@@ -1,14 +1,15 @@
 /* Sticky Notes */
 .sticky-note {
   position: absolute;
-  width: 140px;
-  padding: 15px 12px;
+  width: 180px;
+  padding: 18px 15px;
   font-family: var(--font-handwritten);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   line-height: 1.4;
   color: #333;
   box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3);
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: grab;
   white-space: pre-line;
 }
 
@@ -83,36 +84,423 @@
   }
 }
 
-/* Pen */
+/* Pen - ballpoint style */
 .desk-pen {
   position: absolute;
-  width: 120px;
-  height: 6px;
-  background: linear-gradient(90deg, #1a1a1a 0%, #333 70%, #d4a853 70%, #d4a853 80%, #1a1a1a 80%);
-  border-radius: 2px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
+  width: 140px;
+  height: 8px;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
 }
 
-/* Paper clips */
+/* Pen barrel */
+.desk-pen::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 105px;
+  height: 8px;
+  background: linear-gradient(
+    180deg,
+    #2a2a2a 0%,
+    #1a1a1a 30%,
+    #111 60%,
+    #1a1a1a 100%
+  );
+  border-radius: 3px 0 0 3px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.08);
+}
+
+/* Pen gold band + tip */
+.desk-pen::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 35px;
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    #c9a84c 0%,
+    #e8c56a 15%,
+    #c9a84c 30%,
+    #333 32%,
+    #222 60%,
+    #444 80%,
+    #222 95%,
+    #111 100%
+  );
+  border-radius: 0 2px 2px 0;
+  clip-path: polygon(0 0, 100% 30%, 100% 70%, 0 100%);
+}
+
+/* Paper clips - flat on desk */
 .paper-clip {
   position: absolute;
-  width: 12px;
-  height: 30px;
-  border: 2px solid rgba(180, 180, 180, 0.6);
-  border-radius: 6px 6px 0 0;
+  width: 16px;
+  height: 40px;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.paper-clip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 40px;
+  border: 2.5px solid rgba(190, 190, 190, 0.5);
+  border-radius: 8px 8px 0 0;
   border-bottom: none;
-  pointer-events: none;
 }
 
 .paper-clip::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 2px;
-  width: 8px;
-  height: 20px;
-  border: 2px solid rgba(180, 180, 180, 0.6);
-  border-radius: 4px 4px 0 0;
+  top: 10px;
+  left: 3.5px;
+  width: 9px;
+  height: 30px;
+  border: 2.5px solid rgba(190, 190, 190, 0.4);
+  border-radius: 5px 5px 0 0;
   border-bottom: none;
+}
+
+/* Digital desk clock */
+.desk-clock {
+  position: absolute;
+  width: 100px;
+  height: 46px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #111 50%, #0a0a0a 100%);
+  border: 1.5px solid #333;
+  border-radius: 4px;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.6));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    inset 0 -1px 3px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Screen area */
+.desk-clock::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  right: 6px;
+  bottom: 5px;
+  background: #0a0f0a;
+  border: 1px solid #1a2a1a;
+  border-radius: 2px;
+  box-shadow: inset 0 0 6px rgba(0, 20, 0, 0.3);
+}
+
+/* Time display */
+.clock-display {
+  position: relative;
+  font-family: 'Courier New', monospace;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #00cc00;
+  letter-spacing: 2px;
+  text-shadow: 0 0 6px rgba(0, 204, 0, 0.4);
+  z-index: 1;
+}
+
+/* Colon blink */
+.clock-colon {
+  animation: colon-blink 1s step-end infinite;
+}
+
+@keyframes colon-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===== SMARTPHONE (top-down, laying on desk) ===== */
+.smartphone {
+  position: absolute;
+  width: 82px;
+  height: 165px;
+  background: linear-gradient(145deg, #1a1a1a 0%, #111 50%, #0a0a0a 100%);
+  border-radius: 14px;
+  border: 1.5px solid #333;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.7));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 1px rgba(255,255,255,0.03);
+}
+
+/* Screen */
+.sp-screen {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  right: 5px;
+  bottom: 10px;
+  background: linear-gradient(180deg, #0a0a20 0%, #0f0f2a 50%, #0a0a1a 100%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.sp-time {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.sp-date {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.5rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.5px;
+}
+
+/* Dynamic Island */
+.sp-notch {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 8px;
+  background: #000;
+  border-radius: 4px;
+}
+
+/* ===== MAGNIFYING GLASS ===== */
+.magnifier {
+  position: absolute;
+  width: 45px;
+  height: 75px;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.6));
+}
+
+/* Glass lens */
+.magnifier::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(200,220,255,0.12) 0%, rgba(150,180,220,0.06) 50%, transparent 100%);
+  border: 3px solid #8a7540;
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,0.03),
+    0 0 3px rgba(0,0,0,0.3);
+}
+
+/* Handle */
+.magnifier::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 17px;
+  width: 7px;
+  height: 38px;
+  background: linear-gradient(180deg, #8a7540 0%, #6a5530 50%, #5a4525 100%);
+  border-radius: 2px;
+  transform-origin: top center;
+  transform: rotate(-5deg);
+}
+
+/* ===== STAPLER (top-down, sideways) ===== */
+.stapler {
+  position: absolute;
+  width: 65px;
+  height: 22px;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Stapler top part */
+.stapler::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65px;
+  height: 12px;
+  background: linear-gradient(180deg, #8b1a1a 0%, #6a1010 50%, #551010 100%);
+  border-radius: 3px 3px 1px 1px;
+  border: 1px solid #4a0a0a;
+  box-shadow: inset 0 1px 2px rgba(255,100,100,0.1);
+}
+
+/* Stapler base */
+.stapler::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 60px;
+  height: 10px;
+  background: linear-gradient(180deg, #333 0%, #222 50%, #1a1a1a 100%);
+  border-radius: 1px 1px 2px 2px;
+  border: 1px solid #3a3a3a;
+}
+
+/* Stapler front metal part */
+.stapler-front {
+  position: absolute;
+  right: -2px;
+  top: 3px;
+  width: 6px;
+  height: 8px;
+  background: #999;
+  border-radius: 0 2px 2px 0;
+  border: 1px solid #777;
+}
+
+/* ===== WALKIE-TALKIE (laying on side) ===== */
+.walkie-talkie {
+  position: absolute;
+  width: 80px;
+  height: 190px;
+  pointer-events: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.6));
+}
+
+/* Body */
+.walkie-talkie::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 80px;
+  height: 160px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 40%, #151515 100%);
+  border-radius: 4px 4px 6px 6px;
+  border: 1px solid #3a3a3a;
+  box-shadow:
+    inset 3px 0 6px rgba(255,255,255,0.03),
+    inset -2px 0 4px rgba(0,0,0,0.3);
+}
+
+/* Antenna */
+.walkie-talkie::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  width: 7px;
+  height: 40px;
+  background: linear-gradient(180deg, #555 0%, #333 50%, #222 100%);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Speaker grille */
+.wt-speaker {
+  position: absolute;
+  top: 44px;
+  left: 12px;
+  width: 56px;
+  height: 44px;
+  background: repeating-linear-gradient(
+    180deg,
+    #222 0px,
+    #222 2px,
+    #1a1a1a 2px,
+    #1a1a1a 4px
+  );
+  border-radius: 2px;
+  border: 1px solid #333;
+}
+
+/* Screen */
+.wt-screen {
+  position: absolute;
+  top: 96px;
+  left: 16px;
+  width: 48px;
+  height: 20px;
+  background: #0a1a0a;
+  border: 1px solid #1a2a1a;
+  border-radius: 1px;
+  box-shadow: inset 0 0 4px rgba(0, 20, 0, 0.3);
+}
+
+/* Screen glow */
+.wt-screen::before {
+  content: '14.7';
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #00aa00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-shadow: 0 0 3px rgba(0, 170, 0, 0.4);
+}
+
+/* Keypad */
+.wt-keypad {
+  position: absolute;
+  top: 122px;
+  left: 12px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2px;
+  padding: 3px;
+  background: #111;
+  border-radius: 3px;
+  border: 1px solid #2a2a2a;
+}
+
+.wt-key {
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 50%, #222 100%);
+  border-radius: 2px;
+  border: 1px solid #444;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.06);
+}
+
+/* Side button */
+.wt-side {
+  position: absolute;
+  top: 70px;
+  right: -5px;
+  width: 8px;
+  height: 24px;
+  background: #444;
+  border-radius: 0 2px 2px 0;
+  border: 1px solid #555;
+}
+
+/* Small feet */
+.desk-clock::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 10px;
+  width: 8px;
+  height: 3px;
+  background: #222;
+  border-radius: 0 0 2px 2px;
+  box-shadow: 44px 0 0 #222;
 }

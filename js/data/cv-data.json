@@ -232,11 +232,18 @@
             "email": "tunahanhusem@gmail.com",
             "phone": "0(536) 818 82 88"
           },
-          "reference": {
-            "name": "Sedat NALCACİ",
-            "title": "Customer Support Services Team-Leader",
-            "phone": "0(533) 519 91 71"
-          }
+          "references": [
+            {
+              "name": "Sedat NALCACİ",
+              "title": "Customer Support Services Team-Leader",
+              "phone": "0(533) 519 91 71"
+            },
+            {
+              "name": "Halil Ibrahim AYIK",
+              "title": "System and Cloud Engineer",
+              "phone": "+90 507 958 43 73"
+            }
+          ]
         }
       ]
     },
