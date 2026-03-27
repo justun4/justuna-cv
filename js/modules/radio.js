@@ -5,17 +5,6 @@ import { playSound, stopSound, isMuted, getContext, onMuteChange } from './sound
 
 gsap.registerPlugin(Draggable);
 
-function addTapHandler(el, callback) {
-  let sx = 0, sy = 0;
-  el.addEventListener('pointerdown', (e) => { sx = e.clientX; sy = e.clientY; });
-  el.addEventListener('pointerup', (e) => {
-    if (Math.abs(e.clientX - sx) + Math.abs(e.clientY - sy) < 15) {
-      e.stopPropagation();
-      callback();
-    }
-  });
-}
-
 let radioPlaying = false;
 let radioNodes = null;
 let audioBuffer = null;
@@ -34,68 +23,60 @@ export function initRadio() {
   radioElRef = radio;
 
   radio.innerHTML = `
-    <div class="radio-hitzone radio-hitzone-power" title="ON/OFF"></div>
-    <div class="radio-hitzone radio-hitzone-vol-down" title="Volume -"></div>
-    <div class="radio-hitzone radio-hitzone-vol-up" title="Volume +"></div>
     <span class="radio-vol-display">20%</span>
     <div class="radio-led"></div>
   `;
 
-  let isDragging = false;
   const volDisplay = radio.querySelector('.radio-vol-display');
 
   function updateVolumeDisplay() {
     volDisplay.textContent = `${Math.round(currentVolume * 100)}%`;
   }
 
-  // Draggable
+  // Single GSAP Draggable with onClick - determine action by click position
   Draggable.create(radio, {
     type: 'x,y',
     bounds: '#desk-surface',
     cursor: 'grab',
     activeCursor: 'grabbing',
+    minimumMovement: 3,
     onPress() {
       radio.style.zIndex = getNextZ();
-      isDragging = false;
+    },
+    onClick(e) {
+      // Determine which area was clicked based on position within radio
+      const rect = radio.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width; // 0-1
+      const relY = (e.clientY - rect.top) / rect.height; // 0-1
+
+      if (relX > 0.55 && relY > 0.65) {
+        // Bottom-right: ON/OFF
+        toggleRadio(radio);
+      } else if (relX > 0.55 && relX < 0.72 && relY < 0.55) {
+        // Middle-right top: Volume DOWN
+        currentVolume = Math.max(0, Math.round((currentVolume - 0.1) * 10) / 10);
+        updateVolumeDisplay();
+        if (radioNodes && radioNodes.gainNode) {
+          radioNodes.gainNode.gain.setValueAtTime(currentVolume, radioNodes.ctx.currentTime);
+        }
+      } else if (relX > 0.72 && relY < 0.55) {
+        // Far-right top: Volume UP
+        currentVolume = Math.min(1, Math.round((currentVolume + 0.1) * 10) / 10);
+        updateVolumeDisplay();
+        if (radioNodes && radioNodes.gainNode) {
+          radioNodes.gainNode.gain.setValueAtTime(currentVolume, radioNodes.ctx.currentTime);
+        }
+      }
+      // Clicking on speaker area (left side) does nothing
     },
     onDragStart() {
-      isDragging = true;
       playSound('desk-object');
       gsap.to(radio, { scale: 1.05, duration: 0.2 });
     },
     onDragEnd() {
       stopSound('desk-object');
       gsap.to(radio, { scale: 1, duration: 0.2 });
-      setTimeout(() => { isDragging = false; }, 50);
     },
-  });
-
-  // ON-OFF button
-  addTapHandler(radio.querySelector('.radio-hitzone-power'), () => {
-    toggleRadio(radio);
-  });
-
-  // Volume DOWN (left side of dial)
-  addTapHandler(radio.querySelector('.radio-hitzone-vol-down'), () => {
-    currentVolume = Math.max(0, Math.round((currentVolume - 0.1) * 10) / 10);
-    updateVolumeDisplay();
-    if (radioNodes && radioNodes.gainNode) {
-      radioNodes.gainNode.gain.setValueAtTime(currentVolume, radioNodes.ctx.currentTime);
-    }
-  });
-
-  // Volume UP (right side of dial)
-  addTapHandler(radio.querySelector('.radio-hitzone-vol-up'), () => {
-    currentVolume = Math.min(1, Math.round((currentVolume + 0.1) * 10) / 10);
-    updateVolumeDisplay();
-    if (radioNodes && radioNodes.gainNode) {
-      radioNodes.gainNode.gain.setValueAtTime(currentVolume, radioNodes.ctx.currentTime);
-    }
-  });
-
-  // Prevent radio body click from toggling (only power button toggles)
-  radio.addEventListener('click', (e) => {
-    e.stopPropagation();
   });
 
   // Global mute

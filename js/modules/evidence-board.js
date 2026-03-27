@@ -37,7 +37,6 @@ export function initEvidenceBoard(boardData) {
 function openEvidenceBoard(data) {
   playSound('pin-stick');
 
-  document.getElementById('desk-surface').style.pointerEvents = 'none';
 
   const overlay = document.createElement('div');
   overlay.className = 'evidence-overlay';
@@ -101,7 +100,6 @@ function openEvidenceBoard(data) {
 
   function closeBoard() {
     overlay.remove();
-    document.getElementById('desk-surface').style.pointerEvents = '';
   }
 
   // Close

@@ -32,17 +32,21 @@ export function initDecorations(decorData) {
   });
 
   // Make all decoration items draggable
-  draggableItems.forEach(({ el, sound }) => makeDraggable(el, sound));
+  draggableItems.forEach(({ el, sound, onClick }) => makeDraggable(el, sound, onClick));
 }
 
-function makeDraggable(el, soundName = null) {
+function makeDraggable(el, soundName = null, onClickCallback = null) {
   Draggable.create(el, {
     type: 'x,y',
     bounds: '#desk-surface',
     cursor: 'grab',
     activeCursor: 'grabbing',
+    minimumMovement: 3,
     onPress() {
       el.style.zIndex = getNextZ();
+    },
+    onClick() {
+      if (onClickCallback) onClickCallback();
     },
     onDragStart() {
       if (soundName) playSound(soundName);
@@ -53,9 +57,9 @@ function makeDraggable(el, soundName = null) {
   });
 }
 
-function addToDesk(el, sound = null) {
+function addToDesk(el, sound = null, onClick = null) {
   container.appendChild(el);
-  draggableItems.push({ el, sound });
+  draggableItems.push({ el, sound, onClick });
 }
 
 function createPen(x, y, rotation) {

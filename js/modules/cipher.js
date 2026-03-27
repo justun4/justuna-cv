@@ -70,7 +70,6 @@ export function initCipher() {
 function openCipherOverlay() {
   playSound('cipher-click');
 
-  document.getElementById('desk-surface').style.pointerEvents = 'none';
 
   const overlay = document.createElement('div');
   overlay.className = 'cipher-overlay';
@@ -155,7 +154,6 @@ function openCipherOverlay() {
 
   function closeCipher() {
     overlay.remove();
-    document.getElementById('desk-surface').style.pointerEvents = '';
   }
 
   // Close on backdrop

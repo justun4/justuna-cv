@@ -13,59 +13,7 @@
 
 .desk-radio:active { cursor: grabbing; }
 
-/* Hide old elements */
-.radio-speaker, .radio-antenna { display: none; }
-
-/* Invisible hit zones over the radio image */
-.radio-hitzone {
-  position: absolute;
-  cursor: pointer;
-  z-index: 3;
-  border-radius: 50%;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ON-OFF button (over the ON-OFF knob in image) */
-.radio-hitzone-power {
-  bottom: 8%;
-  left: 53%;
-  width: 36px;
-  height: 36px;
-}
-
-.radio-hitzone-power:hover {
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Volume DOWN - left side of the big dial */
-.radio-hitzone-vol-down {
-  top: 15%;
-  right: 25%;
-  width: 36px;
-  height: 44px;
-  border-radius: 4px;
-}
-
-.radio-hitzone-vol-down:hover {
-  background: rgba(255, 80, 80, 0.1);
-}
-
-/* Volume UP - right side of the big dial */
-.radio-hitzone-vol-up {
-  top: 15%;
-  right: 2%;
-  width: 36px;
-  height: 44px;
-  border-radius: 4px;
-}
-
-.radio-hitzone-vol-up:hover {
-  background: rgba(80, 255, 80, 0.1);
-}
-
-/* Volume display - small text near the dial */
+/* Volume display */
 .radio-vol-display {
   position: absolute;
   top: 4px;
@@ -102,7 +50,3 @@
 .desk-radio.playing {
   filter: drop-shadow(4px 6px 10px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 15px rgba(0, 204, 0, 0.08));
 }
-
-/* Remove old controls styling */
-.radio-controls { display: contents; }
-.radio-vol-btn { display: none; }

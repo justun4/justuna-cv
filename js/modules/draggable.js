@@ -51,3 +51,13 @@ export function initDraggable(folderElements) {
 
   return draggables;
 }
+
+export function disableAllDraggables() {
+  draggables.forEach(d => d.disable());
+  // Also disable all GSAP Draggable instances on the page
+  Draggable.get('.folder')?.forEach?.(d => d.disable());
+}
+
+export function enableAllDraggables() {
+  draggables.forEach(d => d.enable());
+}

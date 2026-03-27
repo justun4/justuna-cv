@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { Draggable } from 'gsap/Draggable';
 import { playSound } from './sounds.js';
 import { t, tData, onLangChange } from './i18n.js';
 
@@ -11,22 +12,19 @@ export function initFingerprint(cvData) {
   const magnifier = document.querySelector('.magnifier');
   if (!magnifier) return;
 
-  let startX = 0, startY = 0;
-  magnifier.addEventListener('pointerdown', (e) => {
-    startX = e.clientX;
-    startY = e.clientY;
-  });
-  magnifier.addEventListener('pointerup', (e) => {
-    const dist = Math.abs(e.clientX - startX) + Math.abs(e.clientY - startY);
-    if (dist < 10) {
-      e.stopPropagation();
-      openFingerprintScanner();
-    }
-  });
+  // Get existing GSAP Draggable on magnifier and add onClick
+  const existingDraggable = Draggable.get(magnifier);
+  if (existingDraggable) {
+    existingDraggable.vars.onClick = () => openFingerprintScanner();
+  } else {
+    magnifier.addEventListener('click', () => openFingerprintScanner());
+  }
 
   onLangChange(() => {
     const overlay = document.querySelector('.fingerprint-overlay');
-    if (overlay) overlay.remove();
+    if (overlay) {
+      overlay.remove();
+      }
   });
 }
 
@@ -79,9 +77,7 @@ function seedRNG(seed) {
 function openFingerprintScanner() {
   playSound('fingerprint-scan');
 
-  // Disable desk interactions while overlay is open
-  const deskSurface = document.getElementById('desk-surface');
-  deskSurface.style.pointerEvents = 'none';
+  // Disable all draggables while overlay is open
 
   const overlay = document.createElement('div');
   overlay.className = 'fingerprint-overlay';
@@ -146,11 +142,10 @@ function openFingerprintScanner() {
     drawFingerprint(canvas, candidateSeeds[i], 90);
   });
 
-  // Handle candidate taps (pointerup for mobile compatibility)
+  // Handle candidate clicks
   let processing = false;
   overlay.querySelectorAll('.fp-candidate').forEach((el) => {
-    el.addEventListener('pointerup', (e) => {
-      e.stopPropagation();
+    el.addEventListener('click', () => {
       if (processing) return;
       processing = true;
 
@@ -212,18 +207,15 @@ function openFingerprintScanner() {
     gsap.killTweensOf(overlay.querySelectorAll('*'));
     gsap.killTweensOf(overlay);
     overlay.remove();
-    // Re-enable desk interactions
-    const deskSurface = document.getElementById('desk-surface');
-    deskSurface.style.pointerEvents = '';
   }
 
   // Close on backdrop
-  overlay.querySelector('.fp-backdrop').addEventListener('pointerup', () => {
+  overlay.querySelector('.fp-backdrop').addEventListener('click', () => {
     closeFingerprint();
   });
 
   // Close on X button
-  overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
+  overlay.querySelector('.overlay-close-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     closeFingerprint();
   });
