@@ -190,6 +190,76 @@
       rgba(0, 0, 0, 0.88) 100%
     );
   }
+
+  /* New features - tablet */
+  .newspaper-folded {
+    width: 180px;
+    height: 110px;
+  }
+
+  .newspaper-title-peek {
+    font-size: 0.9rem;
+  }
+
+  .desk-radio {
+    width: 160px;
+    height: 100px;
+  }
+
+  .cipher-device {
+    width: 130px;
+    height: 130px;
+  }
+
+  .walkie-talkie {
+    width: 60px;
+    height: 140px;
+  }
+
+  .smartphone {
+    width: 60px;
+    height: 120px;
+  }
+
+  .magnifier {
+    width: 35px;
+    height: 60px;
+  }
+
+  .stapler {
+    width: 50px;
+    height: 16px;
+  }
+
+  /* Overlays */
+  .newspaper-full {
+    padding: 18px 20px;
+  }
+
+  .fp-panel {
+    padding: 20px;
+    max-width: 95vw;
+  }
+
+  .cipher-panel {
+    padding: 20px;
+    max-width: 95vw;
+  }
+
+  .eb-board {
+    max-width: 95vw;
+    padding: 15px;
+  }
+
+  .radio-vol-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 0.85rem;
+  }
+
+  .radio-vol-display {
+    font-size: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -269,5 +339,52 @@
   .secret-compartment {
     width: 145px;
     height: 130px;
+  }
+
+  /* New features - phone */
+  .newspaper-folded {
+    width: 140px;
+    height: 85px;
+  }
+
+  .desk-radio {
+    width: 120px;
+    height: 75px;
+  }
+
+  .cipher-device {
+    width: 100px;
+    height: 100px;
+  }
+
+  .walkie-talkie,
+  .magnifier,
+  .stapler {
+    display: none;
+  }
+
+  .smartphone {
+    width: 50px;
+    height: 100px;
+  }
+
+  .sp-time {
+    font-size: 1rem;
+  }
+
+  .fp-candidates {
+    flex-wrap: wrap;
+  }
+
+  .fp-candidate {
+    padding: 4px;
+  }
+
+  .evidence-trigger {
+    padding: 6px 16px;
+  }
+
+  .evidence-trigger-label {
+    font-size: 0.8rem;
   }
 }

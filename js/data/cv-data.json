@@ -229,19 +229,16 @@
           "type": "links",
           "heading": "İletişim Bilgileri",
           "contact": {
-            "email": "tunahanhusem@gmail.com",
-            "phone": "0(536) 818 82 88"
+            "email": "tunahanhusem@gmail.com"
           },
           "references": [
             {
               "name": "Sedat NALCACİ",
-              "title": "Customer Support Services Team-Leader",
-              "phone": "0(533) 519 91 71"
+              "title": "Customer Support Services Team-Leader"
             },
             {
               "name": "Halil Ibrahim AYIK",
-              "title": "System and Cloud Engineer",
-              "phone": "+90 507 958 43 73"
+              "title": "System and Cloud Engineer"
             }
           ]
         }
@@ -272,6 +269,37 @@
       ]
     }
   ],
+  "newspaper": {
+    "headline": "ARANIYOR",
+    "subtitle": "Sistem ve Bulut Mühendisi Aranıyor",
+    "name": "Tunahan HÜSEM",
+    "title": "Bilgisayar Mühendisi",
+    "description": "5+ yıl deneyimli Cloud & DevOps uzmanı. Siber güvenlik, bulut altyapı ve açık kaynak sistemlerde uzmanlaşmış.",
+    "skills": ["AWS", "Kubernetes", "Linux", "Python", "Zabbix", "Grafana"],
+    "contact": "tunahanhusem@gmail.com"
+  },
+  "evidenceBoard": {
+    "nodes": [
+      { "id": "person", "type": "photo", "label": "Tunahan HÜSEM", "x": 50, "y": 10, "desc": "Bilgisayar Mühendisi — 5+ yıl deneyim" },
+      { "id": "cloud", "type": "skill", "label": "Cloud & DevOps", "x": 20, "y": 35, "desc": "AWS, Huawei Cloud, VMware, Kubernetes" },
+      { "id": "security", "type": "skill", "label": "Siber Güvenlik", "x": 80, "y": 35, "desc": "Sızma testleri, zafiyet taraması, UTMStack SIEM" },
+      { "id": "monitoring", "type": "skill", "label": "İzleme & Loglama", "x": 50, "y": 35, "desc": "Zabbix, Grafana, Elasticsearch, Graylog" },
+      { "id": "armis", "type": "job", "label": "Armis Bilişim\\nSystem & Cloud Eng.", "x": 15, "y": 65, "desc": "Bulut altyapı kurulumu ve güvenlik entegrasyonu" },
+      { "id": "infraguard", "type": "job", "label": "Infraguard\\nCloud & DevOps Eng.", "x": 50, "y": 65, "desc": "DevSecOps ve proaktif güvenlik çalışmaları" },
+      { "id": "ngn", "type": "job", "label": "NGN (4 Yıl)\\nCloud Engineer", "x": 85, "y": 65, "desc": "HA çözümleri, yük dengeleme, müşteri projeleri" },
+      { "id": "edu", "type": "edu", "label": "NKÜ\\nBilgisayar Müh.", "x": 50, "y": 90, "desc": "2015-2021, GNO: 2.86" }
+    ],
+    "connections": [
+      { "from": "person", "to": "cloud" },
+      { "from": "person", "to": "security" },
+      { "from": "person", "to": "monitoring" },
+      { "from": "cloud", "to": "armis" },
+      { "from": "cloud", "to": "ngn" },
+      { "from": "security", "to": "infraguard" },
+      { "from": "monitoring", "to": "ngn" },
+      { "from": "person", "to": "edu" }
+    ]
+  },
   "decorations": {
     "stickyNotes": [
       { "text": "Şüpheli: Sistem Mühendisi\nDikkat: Tehlikeli derecede yetenekli", "position": { "x": 3, "y": 75 }, "color": "#f7e47a", "rotation": -3 },

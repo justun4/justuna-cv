@@ -111,8 +111,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 38%, #dd3333 0%, #bb1818 50%, #991010 100%);
-  border: 2px solid #771010;
+  background: radial-gradient(circle at 38% 38%, #3366dd 0%, #2244aa 50%, #183388 100%);
+  border: 2px solid #102266;
   cursor: pointer;
   z-index: 3;
   opacity: 0;
@@ -121,21 +121,21 @@
   transition: opacity 0.4s, scale 0.4s;
   box-shadow:
     inset 0 -2px 4px rgba(0, 0, 0, 0.4),
-    inset 0 1px 2px rgba(255, 120, 120, 0.3),
+    inset 0 1px 2px rgba(120, 160, 255, 0.3),
     0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .hidden-button:hover {
-  background: radial-gradient(circle at 38% 38%, #ee4444 0%, #cc2222 50%, #aa1515 100%);
+  background: radial-gradient(circle at 38% 38%, #4477ee 0%, #3355cc 50%, #2244aa 100%);
   box-shadow:
     inset 0 -2px 4px rgba(0, 0, 0, 0.4),
-    inset 0 1px 2px rgba(255, 120, 120, 0.3),
-    0 2px 10px rgba(200, 0, 0, 0.4);
+    inset 0 1px 2px rgba(120, 160, 255, 0.3),
+    0 2px 10px rgba(0, 80, 200, 0.4);
 }
 
 .hidden-button:active,
 .hidden-button.pressed {
-  background: radial-gradient(circle at 50% 50%, #aa1515 0%, #881010 100%);
+  background: radial-gradient(circle at 50% 50%, #2244aa 0%, #183388 100%);
   box-shadow:
     inset 0 2px 4px rgba(0, 0, 0, 0.5),
     0 1px 3px rgba(0, 0, 0, 0.4);

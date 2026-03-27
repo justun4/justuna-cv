@@ -1,6 +1,7 @@
 let audioCtx = null;
 let muted = false;
 const fileBuffers = {};
+const muteCallbacks = [];
 
 // File-based sounds (randomly rotated)
 const fileSounds = {
@@ -11,7 +12,7 @@ const fileSounds = {
   ],
 };
 
-function getContext() {
+export function getContext() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
@@ -160,6 +161,99 @@ const soundGenerators = {
   'drag-start': () => {
     playNoise(0.04, 0.08);
   },
+
+  'fingerprint-scan': () => {
+    const ctx = getContext();
+    [600, 800, 1000].forEach((freq, i) => {
+      setTimeout(() => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.1);
+      }, i * 80);
+    });
+  },
+
+  'cipher-click': () => {
+    const ctx = getContext();
+    const bufferSize = ctx.sampleRate * 0.04;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(2000, ctx.currentTime);
+    filter.Q.setValueAtTime(2, ctx.currentTime);
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
+    source.stop(ctx.currentTime + 0.04);
+  },
+
+  'radio-static': () => {
+    const ctx = getContext();
+    const bufferSize = ctx.sampleRate * 0.15;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    source.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
+    source.stop(ctx.currentTime + 0.15);
+  },
+
+  'pin-stick': () => {
+    const ctx = getContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(3000, ctx.currentTime);
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.03);
+  },
+
+  'note-crumple': () => {
+    const ctx = getContext();
+    const bufferSize = ctx.sampleRate * 0.2;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(4000, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.2);
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
+    source.stop(ctx.currentTime + 0.2);
+  },
 };
 
 // Generate filtered noise (paper/friction sound)
@@ -201,8 +295,11 @@ export function playSound(name) {
   }
 }
 
+export function onMuteChange(cb) { muteCallbacks.push(cb); }
+
 export function toggleMute() {
   muted = !muted;
+  muteCallbacks.forEach(cb => cb(muted));
   return muted;
 }
 

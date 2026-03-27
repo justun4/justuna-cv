@@ -1,0 +1,177 @@
+/* Fingerprint Scanner Overlay */
+.fingerprint-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-overlay);
+}
+
+.fp-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+
+.fp-panel {
+  position: relative;
+  background: linear-gradient(180deg, #0a0f15 0%, #0d1520 50%, #0a0f15 100%);
+  border: 1px solid rgba(100, 160, 255, 0.15);
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 550px;
+  width: 90vw;
+  box-shadow:
+    0 0 40px rgba(0, 100, 255, 0.08),
+    inset 0 0 30px rgba(0, 50, 100, 0.05);
+}
+
+.fp-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.6rem;
+  color: rgba(100, 180, 255, 0.8);
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.fp-subtitle {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: rgba(100, 160, 255, 0.4);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* Target fingerprint */
+.fp-target-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.fp-label {
+  font-family: var(--font-typewriter);
+  font-size: 0.9rem;
+  color: rgba(255, 100, 100, 0.6);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.fp-target-canvas {
+  border: 2px solid rgba(255, 100, 100, 0.3);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Candidates row */
+.fp-candidates {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fp-candidate {
+  text-align: center;
+  cursor: pointer;
+  padding: 8px;
+  border: 2px solid rgba(100, 160, 255, 0.15);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.fp-candidate:hover {
+  border-color: rgba(100, 180, 255, 0.4);
+  background: rgba(0, 50, 100, 0.1);
+}
+
+.fp-candidate.correct {
+  border-color: rgba(0, 255, 100, 0.6);
+  background: rgba(0, 255, 100, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 100, 0.15);
+}
+
+.fp-candidate.wrong {
+  border-color: rgba(255, 60, 60, 0.6);
+  background: rgba(255, 0, 0, 0.05);
+}
+
+.fp-candidate-canvas {
+  display: block;
+  border-radius: 2px;
+}
+
+.fp-candidate-label {
+  font-family: var(--font-typewriter);
+  font-size: 0.85rem;
+  color: rgba(100, 160, 255, 0.4);
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+/* Hint */
+.fp-hint {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: rgba(255, 200, 50, 0.6);
+  text-align: center;
+  margin-top: 15px;
+  letter-spacing: 1px;
+}
+
+/* Result */
+.fp-result {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.fp-result.success {
+  border-top: 1px solid rgba(0, 255, 100, 0.2);
+  padding-top: 12px;
+}
+
+.fp-success-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.2rem;
+  color: rgba(0, 255, 100, 0.8);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.fp-project {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: rgba(200, 220, 255, 0.7);
+  line-height: 1.6;
+}
+
+.fp-project strong {
+  color: rgba(100, 180, 255, 0.9);
+}
+
+.fp-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(100, 180, 255, 0.1);
+  border: 1px solid rgba(100, 180, 255, 0.3);
+  border-radius: 6px;
+  color: rgba(100, 180, 255, 0.9);
+  text-decoration: none;
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-top: 12px;
+}
+.fp-social-link:hover {
+  background: rgba(100, 180, 255, 0.2);
+  border-color: rgba(100, 180, 255, 0.6);
+}
+.fp-social-link svg { fill: currentColor; }

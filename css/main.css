@@ -42,6 +42,16 @@ html, body {
   cursor: default;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+img, a, div {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+#desk-surface * {
+  -webkit-user-drag: none;
 }
 
 .hidden {

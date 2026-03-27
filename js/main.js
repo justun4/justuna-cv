@@ -6,6 +6,12 @@ import { initDocuments } from './modules/documents.js';
 import { initSounds } from './modules/sounds.js';
 import { initDecorations } from './modules/decorations.js';
 import { initPuzzle } from './modules/puzzle.js';
+import { initNewspaper } from './modules/newspaper.js';
+import { initRadio } from './modules/radio.js';
+import { initFingerprint } from './modules/fingerprint.js';
+import { initCipher } from './modules/cipher.js';
+import { initEvidenceBoard } from './modules/evidence-board.js';
+import { initUserNotes } from './modules/user-notes.js';
 import cvData from './data/cv-data.json';
 
 function init() {
@@ -27,6 +33,17 @@ function init() {
   // Initialize puzzle (secret file mini-game)
   const secretFolder = cvData.folders.find(f => f.id === 'secret');
   initPuzzle(secretFolder);
+
+  // Initialize new desk features
+  initNewspaper(cvData.newspaper);
+  initRadio();
+  initFingerprint(cvData);
+  initCipher();
+  initEvidenceBoard(cvData.evidenceBoard);
+  initUserNotes();
+
+  // Prevent browser drag behavior on all desk elements
+  document.getElementById('desk-surface').addEventListener('dragstart', e => e.preventDefault());
 
   // Setup intro
   setupIntro();

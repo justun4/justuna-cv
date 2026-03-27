@@ -1,0 +1,327 @@
+/* Folded newspaper on desk */
+.newspaper-folded {
+  position: absolute;
+  z-index: 10;
+  width: 250px;
+  height: 150px;
+  background: linear-gradient(180deg, #e8dcc4 0%, #d8ccb0 40%, #c8bca0 100%);
+  border: 2px solid rgba(150, 130, 100, 0.4);
+  border-radius: 4px;
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  pointer-events: auto;
+  filter: sepia(0.3);
+}
+
+.newspaper-folded::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 7px,
+    rgba(100, 80, 50, 0.15) 7px,
+    rgba(100, 80, 50, 0.15) 9px
+  );
+  pointer-events: none;
+}
+
+.newspaper-fold-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(100, 80, 50, 0.3), transparent);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.newspaper-title-peek {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-typewriter);
+  font-size: 1.2rem;
+  color: rgba(60, 40, 20, 0.6);
+  letter-spacing: 6px;
+  white-space: nowrap;
+}
+
+/* Overlay */
+.newspaper-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-overlay);
+}
+
+.newspaper-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+/* Full newspaper */
+.newspaper-full {
+  position: relative;
+  width: 800px;
+  max-width: 92vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #f0e6d0 0%, #e8dcc4 50%, #ddd0b8 100%);
+  border: 2px solid rgba(150, 130, 100, 0.5);
+  padding: 25px 30px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+  filter: sepia(0.1);
+}
+
+/* Header */
+.np-header {
+  margin-bottom: 5px;
+}
+
+.np-masthead {
+  font-family: var(--font-typewriter);
+  font-size: 1.8rem;
+  color: #1a1a1a;
+  text-align: center;
+  letter-spacing: 10px;
+  font-weight: bold;
+  border-bottom: 3px double #1a1a1a;
+  border-top: 3px double #1a1a1a;
+  padding: 6px 0;
+}
+
+.np-header-sub {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-typewriter);
+  font-size: 0.65rem;
+  color: rgba(60, 40, 20, 0.5);
+  letter-spacing: 1px;
+  padding: 4px 0;
+}
+
+.np-divider {
+  height: 1px;
+  background: rgba(60, 40, 20, 0.3);
+  margin: 8px 0;
+}
+
+.np-divider.thick {
+  height: 3px;
+  background: #1a1a1a;
+  margin: 10px 0 14px;
+}
+
+/* Headline */
+.np-headline {
+  font-family: var(--font-typewriter);
+  font-size: 3rem;
+  font-weight: bold;
+  color: #8b0000;
+  text-align: center;
+  letter-spacing: 12px;
+  line-height: 1.1;
+  margin: 8px 0 4px;
+  text-shadow: 1px 1px 0 rgba(139, 0, 0, 0.2);
+}
+
+.np-subtitle {
+  font-family: var(--font-typewriter);
+  font-size: 1.15rem;
+  color: #333;
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+}
+
+/* Body - two columns */
+.np-body {
+  display: flex;
+  gap: 25px;
+}
+
+.np-col-left {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid rgba(60, 40, 20, 0.25);
+  padding-right: 25px;
+}
+
+.np-col-right {
+  flex: 1;
+}
+
+/* Wanted poster image */
+.np-wanted-poster {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.np-wanted-img {
+  width: 100%;
+  height: auto;
+  border: 2px solid rgba(60, 40, 20, 0.3);
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.np-suspect-info {
+  text-align: center;
+  width: 100%;
+}
+
+.np-suspect-name {
+  font-family: var(--font-typewriter);
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.np-suspect-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  color: #555;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* Articles */
+.np-article {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(60, 40, 20, 0.15);
+}
+
+.np-article:last-of-type {
+  border-bottom: none;
+}
+
+.np-left-article p {
+  text-align: left !important;
+  text-indent: 0 !important;
+  font-size: 0.9rem !important;
+}
+
+.np-article-title {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  color: #8b0000;
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.np-article p {
+  font-family: var(--font-typewriter);
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.7;
+  text-align: justify;
+  text-indent: 15px;
+}
+
+.np-fake-news {
+  font-style: normal;
+}
+
+.np-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.np-skill-tag {
+  font-family: var(--font-typewriter);
+  font-size: 0.9rem;
+  background: rgba(26, 26, 26, 0.08);
+  border: 1px solid rgba(60, 40, 20, 0.25);
+  padding: 3px 8px;
+  color: #333;
+}
+
+.np-contact-box {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  padding: 10px;
+  border: 1px dashed rgba(60, 40, 20, 0.3);
+  margin-top: 10px;
+}
+
+.np-contact-box span {
+  font-weight: bold;
+  color: #8b0000;
+  letter-spacing: 2px;
+}
+
+/* Footer */
+.np-footer {
+  margin-top: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.np-stamp {
+  display: inline-block;
+  font-family: var(--font-typewriter);
+  font-size: 1.2rem;
+  color: #8b0000;
+  border: 3px solid #8b0000;
+  padding: 4px 20px;
+  letter-spacing: 4px;
+  transform: rotate(-5deg);
+  opacity: 0.7;
+}
+
+.np-footer-text {
+  font-family: var(--font-typewriter);
+  font-size: 0.55rem;
+  color: rgba(60, 40, 20, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .newspaper-full {
+    padding: 18px 20px;
+  }
+
+  .np-masthead {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+  }
+
+  .np-headline {
+    font-size: 2rem;
+    letter-spacing: 6px;
+  }
+
+  .np-body {
+    flex-direction: column;
+  }
+
+  .np-col-left {
+    flex: none;
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid rgba(60, 40, 20, 0.25);
+    padding-bottom: 15px;
+  }
+
+  .np-wanted-poster {
+    max-width: 200px;
+  }
+}

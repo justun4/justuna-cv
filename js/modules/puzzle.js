@@ -45,25 +45,30 @@ export function initPuzzle(secretFolderData) {
     coffeeEl.style.opacity = pct < 0.1 ? '0.3' : '1';
   }
 
+  let coffeeBusy = false;
+
   mug.addEventListener('click', (e) => {
-    if (isDragging) return;
+    if (isDragging || coffeeBusy) return;
     e.stopPropagation();
 
+    coffeeBusy = true;
+
     if (coffeeLevel > 0) {
-      // Sip coffee
       coffeeLevel--;
       playSound('sip-coffee');
       updateCoffeeVisual();
+      setTimeout(() => { coffeeBusy = false; }, 1500);
     } else {
-      // Refill
       playSound('coffee-pour');
-      // Gradually refill over the sound duration
       let step = 0;
       const refillInterval = setInterval(() => {
         step++;
         coffeeLevel = step;
         updateCoffeeVisual();
-        if (step >= 5) clearInterval(refillInterval);
+        if (step >= 5) {
+          clearInterval(refillInterval);
+          coffeeBusy = false;
+        }
       }, 400);
     }
   });
@@ -152,7 +157,6 @@ function checkMugPosition() {
 
   if (distance > 50) {
     puzzleState.mugMoved = true;
-    // Instant reveal - button was always there, just hidden under the mug
     button.style.opacity = '1';
     button.style.scale = '1';
     button.style.pointerEvents = 'auto';
@@ -392,7 +396,7 @@ function makeSecretFolderDraggable() {
   folderEl.style.position = 'absolute';
   folderEl.style.left = rect.left + 'px';
   folderEl.style.top = rect.top + 'px';
-  folderEl.style.zIndex = getNextZ();
+  folderEl.style.zIndex = '5';
   folderEl.style.pointerEvents = 'auto';
   deskEl.appendChild(folderEl);
 
