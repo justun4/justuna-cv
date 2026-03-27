@@ -1,5 +1,6 @@
 import { playSound } from './sounds.js';
 import { t, tData, onLangChange } from './i18n.js';
+import { isOverlayOpen, setOverlay, clearOverlay } from './overlay-guard.js';
 
 const overlay = document.getElementById('document-overlay');
 const modal = document.getElementById('document-modal');
@@ -37,6 +38,8 @@ export function initDocuments() {
 }
 
 export function openDocument(folder) {
+  if (isOverlayOpen()) return;
+  setOverlay('document');
   currentFolder = folder;
   currentPage = 0;
 
@@ -54,6 +57,7 @@ function closeDocument() {
   overlay.classList.add('hidden');
   currentFolder = null;
   playSound('folder-close');
+  clearOverlay();
 }
 
 function flipPage(direction) {

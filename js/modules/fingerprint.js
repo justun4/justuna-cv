@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { playSound } from './sounds.js';
 import { t, tData, onLangChange } from './i18n.js';
+import { isOverlayOpen, setOverlay, clearOverlay } from './overlay-guard.js';
 
 let cvDataRef = null;
 
@@ -24,6 +25,7 @@ export function initFingerprint(cvData) {
     const overlay = document.querySelector('.fingerprint-overlay');
     if (overlay) {
       overlay.remove();
+      clearOverlay();
       }
   });
 }
@@ -75,6 +77,8 @@ function seedRNG(seed) {
 }
 
 function openFingerprintScanner() {
+  if (isOverlayOpen()) return;
+  setOverlay('fingerprint');
   playSound('fingerprint-scan');
 
   // Disable all draggables while overlay is open
@@ -207,6 +211,7 @@ function openFingerprintScanner() {
     gsap.killTweensOf(overlay.querySelectorAll('*'));
     gsap.killTweensOf(overlay);
     overlay.remove();
+    clearOverlay();
   }
 
   // Close on backdrop

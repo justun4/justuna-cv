@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { getNextZ } from './desk.js';
 import { playSound } from './sounds.js';
 import { t, tData, onLangChange } from './i18n.js';
+import { isOverlayOpen, setOverlay, clearOverlay } from './overlay-guard.js';
 
 export function initEvidenceBoard(boardData) {
   if (!boardData) return;
@@ -30,11 +31,13 @@ export function initEvidenceBoard(boardData) {
     const label = trigger.querySelector('.evidence-trigger-label');
     if (label) label.textContent = t('eb.title');
     const overlay = document.querySelector('.evidence-overlay');
-    if (overlay) overlay.remove();
+    if (overlay) { overlay.remove(); clearOverlay(); }
   });
 }
 
 function openEvidenceBoard(data) {
+  if (isOverlayOpen()) return;
+  setOverlay('evidence-board');
   playSound('pin-stick');
 
 
@@ -100,6 +103,7 @@ function openEvidenceBoard(data) {
 
   function closeBoard() {
     overlay.remove();
+    clearOverlay();
   }
 
   // Close

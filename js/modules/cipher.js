@@ -3,6 +3,7 @@ import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound, stopSound } from './sounds.js';
 import { t, onLangChange } from './i18n.js';
+import { isOverlayOpen, setOverlay, clearOverlay } from './overlay-guard.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -63,11 +64,13 @@ export function initCipher() {
 
   onLangChange(() => {
     const overlay = document.querySelector('.cipher-overlay');
-    if (overlay) overlay.remove();
+    if (overlay) { overlay.remove(); clearOverlay(); }
   });
 }
 
 function openCipherOverlay() {
+  if (isOverlayOpen()) return;
+  setOverlay('cipher');
   playSound('cipher-click');
 
 
@@ -154,6 +157,7 @@ function openCipherOverlay() {
 
   function closeCipher() {
     overlay.remove();
+    clearOverlay();
   }
 
   // Close on backdrop

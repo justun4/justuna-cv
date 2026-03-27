@@ -3,6 +3,7 @@ import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound, stopSound } from './sounds.js';
 import { t, tData, getLang, onLangChange } from './i18n.js';
+import { isOverlayOpen, setOverlay, clearOverlay } from './overlay-guard.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -48,6 +49,8 @@ export function initNewspaper(newspaperData) {
   });
 
   function openNewspaper(data) {
+    if (isOverlayOpen()) return;
+    setOverlay('newspaper');
     isOpen = true;
     playSound('page-flip');
 
@@ -162,6 +165,7 @@ export function initNewspaper(newspaperData) {
       if (overlay) {
         overlay.remove();
         isOpen = false;
+        clearOverlay();
       }
     }
   });
@@ -177,6 +181,7 @@ export function initNewspaper(newspaperData) {
       onComplete() {
         overlay.remove();
         isOpen = false;
+        clearOverlay();
       }
     });
   }
