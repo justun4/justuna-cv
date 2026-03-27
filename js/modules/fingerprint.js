@@ -204,20 +204,21 @@ function openFingerprintScanner() {
     });
   });
 
+  function closeFingerprint() {
+    // Kill all GSAP animations on overlay elements
+    gsap.killTweensOf(overlay.querySelectorAll('*'));
+    gsap.killTweensOf(overlay);
+    overlay.remove();
+  }
+
   // Close on backdrop
   overlay.querySelector('.fp-backdrop').addEventListener('pointerup', () => {
-    gsap.to(overlay, {
-      opacity: 0, duration: 0.3,
-      onComplete() { overlay.remove(); }
-    });
+    closeFingerprint();
   });
 
   // Close on X button
   overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
     e.stopPropagation();
-    gsap.to(overlay, {
-      opacity: 0, duration: 0.3,
-      onComplete() { overlay.remove(); }
-    });
+    closeFingerprint();
   });
 }

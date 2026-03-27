@@ -19,6 +19,7 @@ export function initDraggable(folderElements) {
       cursor: 'grab',
       activeCursor: 'grabbing',
       minimumMovement: 3,
+      allowEventDefault: true,
       onPress() {
         el.style.zIndex = getNextZ();
       },
