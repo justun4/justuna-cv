@@ -143,9 +143,13 @@ function openFingerprintScanner() {
   });
 
   // Handle candidate taps (pointerup for mobile compatibility)
+  let processing = false;
   overlay.querySelectorAll('.fp-candidate').forEach((el) => {
     el.addEventListener('pointerup', (e) => {
       e.stopPropagation();
+      if (processing) return;
+      processing = true;
+
       const seed = parseInt(el.dataset.seed);
       const resultEl = overlay.querySelector('.fp-result');
 
@@ -185,7 +189,10 @@ function openFingerprintScanner() {
 
         gsap.to(el, {
           x: -5, duration: 0.05, repeat: 5, yoyo: true,
-          onComplete() { gsap.set(el, { x: 0 }); }
+          onComplete() {
+            gsap.set(el, { x: 0 });
+            processing = false;
+          }
         });
 
         setTimeout(() => el.classList.remove('wrong'), 600);
