@@ -101,7 +101,8 @@ export function initPuzzle(secretFolderData) {
   })[0];
 
   // Step 2: Hidden button click → slide open desk compartment
-  hiddenButton.addEventListener('click', () => {
+  hiddenButton.addEventListener('pointerup', (e) => {
+    e.stopPropagation();
     if (puzzleState.buttonPressed) return;
     puzzleState.buttonPressed = true;
     playSound('button-click');
