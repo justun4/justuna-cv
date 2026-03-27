@@ -37,6 +37,8 @@ export function initEvidenceBoard(boardData) {
 function openEvidenceBoard(data) {
   playSound('pin-stick');
 
+  document.getElementById('desk-surface').style.pointerEvents = 'none';
+
   const overlay = document.createElement('div');
   overlay.className = 'evidence-overlay';
   overlay.style.zIndex = 200;
@@ -97,21 +99,20 @@ function openEvidenceBoard(data) {
     { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.1)' }
   );
 
+  function closeBoard() {
+    overlay.remove();
+    document.getElementById('desk-surface').style.pointerEvents = '';
+  }
+
   // Close
   overlay.querySelector('.eb-backdrop').addEventListener('pointerup', () => {
-    gsap.to(overlay, {
-      opacity: 0, duration: 0.3,
-      onComplete() { overlay.remove(); }
-    });
+    closeBoard();
   });
 
   // Close on X button
   overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
     e.stopPropagation();
-    gsap.to(overlay, {
-      opacity: 0, duration: 0.3,
-      onComplete() { overlay.remove(); }
-    });
+    closeBoard();
   });
 
   // Close tooltip on board click

@@ -70,6 +70,8 @@ export function initCipher() {
 function openCipherOverlay() {
   playSound('cipher-click');
 
+  document.getElementById('desk-surface').style.pointerEvents = 'none';
+
   const overlay = document.createElement('div');
   overlay.className = 'cipher-overlay';
   overlay.style.zIndex = 200;
@@ -151,21 +153,20 @@ function openCipherOverlay() {
     },
   });
 
+  function closeCipher() {
+    overlay.remove();
+    document.getElementById('desk-surface').style.pointerEvents = '';
+  }
+
   // Close on backdrop
   overlay.querySelector('.cipher-backdrop').addEventListener('pointerup', () => {
-    gsap.to(overlay, {
-      opacity: 0, duration: 0.3,
-      onComplete() { overlay.remove(); }
-    });
+    closeCipher();
   });
 
   // Close on X button
   overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
     e.stopPropagation();
-    gsap.to(overlay, {
-      opacity: 0, duration: 0.3,
-      onComplete() { overlay.remove(); }
-    });
+    closeCipher();
   });
 }
 

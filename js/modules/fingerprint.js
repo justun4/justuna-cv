@@ -79,6 +79,10 @@ function seedRNG(seed) {
 function openFingerprintScanner() {
   playSound('fingerprint-scan');
 
+  // Disable desk interactions while overlay is open
+  const deskSurface = document.getElementById('desk-surface');
+  deskSurface.style.pointerEvents = 'none';
+
   const overlay = document.createElement('div');
   overlay.className = 'fingerprint-overlay';
   overlay.style.zIndex = 200;
@@ -205,10 +209,12 @@ function openFingerprintScanner() {
   });
 
   function closeFingerprint() {
-    // Kill all GSAP animations on overlay elements
     gsap.killTweensOf(overlay.querySelectorAll('*'));
     gsap.killTweensOf(overlay);
     overlay.remove();
+    // Re-enable desk interactions
+    const deskSurface = document.getElementById('desk-surface');
+    deskSurface.style.pointerEvents = '';
   }
 
   // Close on backdrop

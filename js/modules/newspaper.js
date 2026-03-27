@@ -51,6 +51,9 @@ export function initNewspaper(newspaperData) {
     isOpen = true;
     playSound('page-flip');
 
+    // Disable desk interactions
+    document.getElementById('desk-surface').style.pointerEvents = 'none';
+
     // Create overlay
     const overlay = document.createElement('div');
     overlay.className = 'newspaper-overlay';
@@ -161,6 +164,7 @@ export function initNewspaper(newspaperData) {
       if (overlay) {
         overlay.remove();
         isOpen = false;
+        document.getElementById('desk-surface').style.pointerEvents = '';
       }
     }
   });
@@ -176,6 +180,7 @@ export function initNewspaper(newspaperData) {
       onComplete() {
         overlay.remove();
         isOpen = false;
+        document.getElementById('desk-surface').style.pointerEvents = '';
       }
     });
   }
