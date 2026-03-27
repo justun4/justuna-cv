@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound, stopSound } from './sounds.js';
+import { t, tData, getLang, onLangChange } from './i18n.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -18,42 +19,32 @@ export function initNewspaper(newspaperData) {
   newspaper.style.top = '80%';
   desk.appendChild(newspaper);
 
-  // Inner content for folded state
-  newspaper.innerHTML = `
-    <div class="newspaper-fold-line"></div>
-    <div class="newspaper-title-peek">GAZETE</div>
-  `;
+  // PNG image replaces folded state visuals (no inner HTML needed)
 
   let isOpen = false;
   let isDragging = false;
 
   // Make folded newspaper draggable
-  const draggable = Draggable.create(newspaper, {
+  Draggable.create(newspaper, {
     type: 'x,y',
     bounds: '#desk-surface',
     cursor: 'grab',
     activeCursor: 'grabbing',
+    minimumMovement: 3,
     onPress() {
       newspaper.style.zIndex = getNextZ();
-      isDragging = false;
+    },
+    onClick() {
+      if (!isOpen) openNewspaper(newspaperData);
     },
     onDragStart() {
-      isDragging = true;
       playSound('note-shuffle');
       gsap.to(newspaper, { scale: 1.05, duration: 0.2 });
     },
     onDragEnd() {
       stopSound('note-shuffle');
       gsap.to(newspaper, { scale: 1, duration: 0.2 });
-      setTimeout(() => { isDragging = false; }, 50);
     },
-  })[0];
-
-  // Click to unfold into overlay
-  newspaper.addEventListener('dblclick', (e) => {
-    if (isDragging || isOpen) return;
-    e.stopPropagation();
-    openNewspaper(newspaperData);
   });
 
   function openNewspaper(data) {
@@ -65,73 +56,75 @@ export function initNewspaper(newspaperData) {
     overlay.className = 'newspaper-overlay';
     overlay.style.zIndex = 200;
 
-    const dateStr = new Date().toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' });
+    const locale = getLang() === 'en' ? 'en-US' : 'tr-TR';
+    const dateStr = new Date().toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
     const skillTags = data.skills.map(s => `<span class="np-skill-tag">${s}</span>`).join('');
 
     overlay.innerHTML = `
       <div class="newspaper-backdrop"></div>
       <div class="newspaper-full">
+        <button class="overlay-close-btn" aria-label="Close">&times;</button>
         <div class="np-header">
-          <div class="np-masthead">SORUŞTURMA GAZETESİ</div>
+          <div class="np-masthead">${t('news.masthead')}</div>
           <div class="np-header-sub">
-            <span>Yıl: 1 — Sayı: 42</span>
+            <span>${t('news.year')}</span>
             <span>${dateStr}</span>
-            <span>Fiyatı: Gizli</span>
+            <span>${t('news.price')}</span>
           </div>
           <div class="np-divider thick"></div>
         </div>
 
-        <div class="np-headline">${data.headline}</div>
-        <div class="np-subtitle">${data.subtitle}</div>
+        <div class="np-headline">${tData(data.headline, data.headline_en)}</div>
+        <div class="np-subtitle">${tData(data.subtitle, data.subtitle_en)}</div>
         <div class="np-divider"></div>
 
         <div class="np-body">
           <div class="np-col-left">
             <div class="np-wanted-poster">
-              <img src="/assets/images/wanted.png" alt="Şüpheli" class="np-wanted-img">
+              <img src="/assets/images/wanted.png" alt="${t('eb.type.suspect')}" class="np-wanted-img">
             </div>
 
             <div class="np-article np-left-article">
-              <div class="np-article-title">BORSA</div>
-              <p class="np-fake-news">Teknoloji hisseleri bu hafta %12 yükseldi. Bulut bilişim sektörü rekor büyüme kaydetti. Analistler yükselişin devam edeceğini öngörüyor.</p>
+              <div class="np-article-title">${t('news.left1.title')}</div>
+              <p class="np-fake-news">${t('news.left1.text')}</p>
             </div>
 
             <div class="np-article np-left-article">
-              <div class="np-article-title">İLAN</div>
-              <p class="np-fake-news">Deneyimli Sistem Mühendisi aranıyor. Linux, AWS ve Kubernetes bilgisi şart. İlgilenenlerin özgeçmişlerini göndermesi rica olunur.</p>
+              <div class="np-article-title">${t('news.left2.title')}</div>
+              <p class="np-fake-news">${t('news.left2.text')}</p>
             </div>
           </div>
 
           <div class="np-col-right">
             <div class="np-article">
-              <div class="np-article-title">GİZEMLİ OLAY: KAHVELERİ KİM İÇİYOR?</div>
-              <p class="np-fake-news">Şehir merkezindeki ofislerde son günlerde yaşanan gizemli kahve kaybı vakası büyüyor. Güvenlik kameraları her sabah saat 08:00'da doldurulan kahve makinelerinin 08:15'te tamamen boşaldığını gösteriyor. Yetkililer durumu "açıklanamaz" olarak nitelendirdi.</p>
+              <div class="np-article-title">${t('news.article1.title')}</div>
+              <p class="np-fake-news">${t('news.article1.text')}</p>
             </div>
 
             <div class="np-article">
-              <div class="np-article-title">HAVA DURUMU</div>
-              <p class="np-fake-news">Bugün sisli ve kasvetli bir hava bekleniyor. Dedektifler için ideal çalışma koşulları. Şemsiyenizi almayı unutmayın. Gece saatlerinde gizemli ayak sesleri duyulabilir.</p>
+              <div class="np-article-title">${t('news.article2.title')}</div>
+              <p class="np-fake-news">${t('news.article2.text')}</p>
             </div>
 
             <div class="np-article">
-              <div class="np-article-title">TEKNOLOJİ: YENİ NESİL SUNUCULAR</div>
-              <p class="np-fake-news">Devlet kurumlarında kullanılan eski sunucu sistemlerinin modernizasyonu kapsamında, bulut tabanlı altyapılara geçiş hızlanıyor. Uzmanlar, sanallaştırma teknolojilerinin veri merkezlerinde %60 enerji tasarrufu sağladığını açıkladı.</p>
+              <div class="np-article-title">${t('news.article3.title')}</div>
+              <p class="np-fake-news">${t('news.article3.text')}</p>
             </div>
 
             <div class="np-article">
-              <div class="np-article-title">SPOR: VOLEYBOL LİGİ BAŞLIYOR</div>
-              <p class="np-fake-news">Bölge voleybol turnuvası bu hafta sonu başlıyor. Geçen yılın ikincisi olan takım, bu sezon şampiyonluk hedefliyor. Antrenör, takımın fiziksel ve mental olarak hazır olduğunu belirtti.</p>
+              <div class="np-article-title">${t('news.article4.title')}</div>
+              <p class="np-fake-news">${t('news.article4.text')}</p>
             </div>
 
             <div class="np-article">
-              <div class="np-article-title">KÜLTÜR: TİYATRO FESTİVALİ</div>
-              <p class="np-fake-news">Şehir tiyatrosu bu sezon 12 yeni oyun sahneleyecek. Festivalde hem klasik hem modern eserler yer alacak. Biletler ön satışta tükenmek üzere.</p>
+              <div class="np-article-title">${t('news.article5.title')}</div>
+              <p class="np-fake-news">${t('news.article5.text')}</p>
             </div>
           </div>
         </div>
 
         <div class="np-footer">
-          <span class="np-footer-text">Bu gazete gizli bilgi içermektedir. Yetkisiz kişilerce okunması yasaktır.</span>
+          <span class="np-footer-text">${t('news.footer')}</span>
         </div>
       </div>
     `;
@@ -150,10 +143,27 @@ export function initNewspaper(newspaperData) {
     );
 
     // Close on backdrop click
-    overlay.querySelector('.newspaper-backdrop').addEventListener('click', () => {
+    overlay.querySelector('.newspaper-backdrop').addEventListener('pointerup', () => {
+      closeNewspaper(overlay);
+    });
+
+    // Close on X button
+    overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
+      e.stopPropagation();
       closeNewspaper(overlay);
     });
   }
+
+  // Close newspaper on language change
+  onLangChange(() => {
+    if (isOpen) {
+      const overlay = document.querySelector('.newspaper-overlay');
+      if (overlay) {
+        overlay.remove();
+        isOpen = false;
+      }
+    }
+  });
 
   function closeNewspaper(overlay) {
     const full = overlay.querySelector('.newspaper-full');

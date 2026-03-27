@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound } from './sounds.js';
+import { t } from './i18n.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -13,7 +14,7 @@ export function initUserNotes() {
   // Create add button (fixed bottom-left, matching sound toggle style)
   const addBtn = document.createElement('button');
   addBtn.id = 'add-note-btn';
-  addBtn.title = 'Not Ekle';
+  addBtn.title = t('notes.add');
   addBtn.textContent = '+';
   document.body.appendChild(addBtn);
 
@@ -76,7 +77,7 @@ function createNote(data, isNew = true) {
   note.innerHTML = `
     <div class="user-note-header">
       <div class="user-note-drag-area"></div>
-      <button class="user-note-delete" title="Sil">&times;</button>
+      <button class="user-note-delete" title="${t('notes.delete')}">&times;</button>
     </div>
     <div class="user-note-text" contenteditable="true" spellcheck="false">${data.text || ''}</div>
   `;

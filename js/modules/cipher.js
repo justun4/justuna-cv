@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound, stopSound } from './sounds.js';
+import { t, onLangChange } from './i18n.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -9,7 +10,6 @@ const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const ENCODED_MESSAGE = 'WXQDKDQ KXVHP';
 const SHIFT = 3;
 const DECODED_MESSAGE = 'TUNAHAN HUSEM';
-const SECRET_REVEAL = 'LinkedIn Profili';
 
 export function initCipher() {
   const desk = document.getElementById('desk-surface');
@@ -44,27 +44,26 @@ export function initCipher() {
     bounds: '#desk-surface',
     cursor: 'grab',
     activeCursor: 'grabbing',
+    minimumMovement: 3,
     onPress() {
       device.style.zIndex = getNextZ();
-      isDragging = false;
+    },
+    onClick() {
+      openCipherOverlay();
     },
     onDragStart() {
-      isDragging = true;
       playSound('desk-object');
       gsap.to(device, { scale: 1.05, duration: 0.2 });
     },
     onDragEnd() {
       stopSound('desk-object');
       gsap.to(device, { scale: 1, duration: 0.2 });
-      setTimeout(() => { isDragging = false; }, 50);
     },
   });
 
-  // Double-click to open overlay
-  device.addEventListener('dblclick', (e) => {
-    if (isDragging) return;
-    e.stopPropagation();
-    openCipherOverlay();
+  onLangChange(() => {
+    const overlay = document.querySelector('.cipher-overlay');
+    if (overlay) overlay.remove();
   });
 }
 
@@ -78,8 +77,9 @@ function openCipherOverlay() {
   overlay.innerHTML = `
     <div class="cipher-backdrop"></div>
     <div class="cipher-panel">
-      <div class="cipher-title">SEZAR SIFRE CIHAZI</div>
-      <div class="cipher-subtitle">Ic halkayi cevirerek mesaji cozun</div>
+      <button class="overlay-close-btn" aria-label="Close">&times;</button>
+      <div class="cipher-title">${t('cipher.title')}</div>
+      <div class="cipher-subtitle">${t('cipher.subtitle')}</div>
       <div class="cipher-wheel-container">
         <div class="cipher-wheel">
           <div class="cipher-outer-ring"></div>
@@ -88,9 +88,9 @@ function openCipherOverlay() {
         </div>
       </div>
       <div class="cipher-display">
-        <div class="cipher-encoded-label">SIFRELI</div>
+        <div class="cipher-encoded-label">${t('cipher.encoded')}</div>
         <div class="cipher-encoded">${ENCODED_MESSAGE}</div>
-        <div class="cipher-decoded-label">COZULMUS</div>
+        <div class="cipher-decoded-label">${t('cipher.decoded')}</div>
         <div class="cipher-decoded">???</div>
       </div>
       <div class="cipher-result hidden"></div>
@@ -152,7 +152,16 @@ function openCipherOverlay() {
   });
 
   // Close on backdrop
-  overlay.querySelector('.cipher-backdrop').addEventListener('click', () => {
+  overlay.querySelector('.cipher-backdrop').addEventListener('pointerup', () => {
+    gsap.to(overlay, {
+      opacity: 0, duration: 0.3,
+      onComplete() { overlay.remove(); }
+    });
+  });
+
+  // Close on X button
+  overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
+    e.stopPropagation();
     gsap.to(overlay, {
       opacity: 0, duration: 0.3,
       onComplete() { overlay.remove(); }
@@ -181,10 +190,10 @@ function celebrateSolve(overlay) {
   const resultEl = overlay.querySelector('.cipher-result');
   resultEl.classList.remove('hidden');
   resultEl.innerHTML = `
-    <div class="cipher-success-title">SIFRE COZULDU!</div>
+    <div class="cipher-success-title">${t('cipher.solved')}</div>
     <a href="https://www.linkedin.com/in/tunahanhusem/" target="_blank" class="cipher-social-link" onclick="event.stopPropagation()">
       <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      <span>${SECRET_REVEAL}</span>
+      <span>${t('cipher.linkedin')}</span>
     </a>
   `;
 

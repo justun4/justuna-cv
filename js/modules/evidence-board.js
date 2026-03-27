@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { getNextZ } from './desk.js';
 import { playSound } from './sounds.js';
+import { t, tData, onLangChange } from './i18n.js';
 
 export function initEvidenceBoard(boardData) {
   if (!boardData) return;
@@ -15,13 +16,21 @@ export function initEvidenceBoard(boardData) {
   trigger.style.top = '2%';
   trigger.innerHTML = `
     <div class="evidence-trigger-pin"></div>
-    <div class="evidence-trigger-label">KANIT PANOSU</div>
+    <div class="evidence-trigger-label">${t('eb.title')}</div>
   `;
   desk.appendChild(trigger);
 
-  trigger.addEventListener('dblclick', (e) => {
+  trigger.addEventListener('click', (e) => {
     e.stopPropagation();
     openEvidenceBoard(boardData);
+  });
+
+  // Update trigger label + close overlay on language change
+  onLangChange(() => {
+    const label = trigger.querySelector('.evidence-trigger-label');
+    if (label) label.textContent = t('eb.title');
+    const overlay = document.querySelector('.evidence-overlay');
+    if (overlay) overlay.remove();
   });
 }
 
@@ -35,7 +44,8 @@ function openEvidenceBoard(data) {
   overlay.innerHTML = `
     <div class="eb-backdrop"></div>
     <div class="eb-board">
-      <div class="eb-title">KANIT PANOSU</div>
+      <button class="overlay-close-btn" aria-label="Close">&times;</button>
+      <div class="eb-title">${t('eb.title')}</div>
       <div class="eb-cork">
         <svg class="eb-strings" width="100%" height="100%"></svg>
         <div class="eb-nodes"></div>
@@ -59,7 +69,7 @@ function openEvidenceBoard(data) {
     el.style.top = `${node.y}%`;
     el.dataset.id = node.id;
 
-    const labelText = node.label.replace(/\\n/g, '\n');
+    const labelText = tData(node.label, node.label_en).replace(/\\n/g, '\n');
     el.innerHTML = `
       <div class="eb-pin"></div>
       <div class="eb-node-content">${labelText.replace(/\n/g, '<br>')}</div>
@@ -88,7 +98,16 @@ function openEvidenceBoard(data) {
   );
 
   // Close
-  overlay.querySelector('.eb-backdrop').addEventListener('click', () => {
+  overlay.querySelector('.eb-backdrop').addEventListener('pointerup', () => {
+    gsap.to(overlay, {
+      opacity: 0, duration: 0.3,
+      onComplete() { overlay.remove(); }
+    });
+  });
+
+  // Close on X button
+  overlay.querySelector('.overlay-close-btn').addEventListener('pointerup', (e) => {
+    e.stopPropagation();
     gsap.to(overlay, {
       opacity: 0, duration: 0.3,
       onComplete() { overlay.remove(); }
@@ -145,18 +164,18 @@ function drawConnections(svg, connections, nodeMap, cork) {
 }
 
 function showTooltip(tooltip, node, el) {
-  const labelText = node.label.replace(/\\n/g, '\n');
+  const labelText = tData(node.label, node.label_en).replace(/\\n/g, '\n');
   const typeLabels = {
-    photo: 'Supheli',
-    skill: 'Uzmanlik Alani',
-    job: 'Is Deneyimi',
-    edu: 'Egitim',
+    photo: t('eb.type.suspect'),
+    skill: t('eb.type.skill'),
+    job: t('eb.type.job'),
+    edu: t('eb.type.edu'),
   };
 
   tooltip.innerHTML = `
     <div class="eb-tooltip-type">${typeLabels[node.type] || node.type}</div>
     <div class="eb-tooltip-label">${labelText.replace(/\n/g, ' - ')}</div>
-    ${node.desc ? `<div class="eb-tooltip-desc">${node.desc}</div>` : ''}
+    ${node.desc ? `<div class="eb-tooltip-desc">${tData(node.desc, node.desc_en)}</div>` : ''}
   `;
   tooltip.classList.remove('hidden');
 

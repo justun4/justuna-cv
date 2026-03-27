@@ -1,6 +1,7 @@
 import { getNextZ } from './desk.js';
 import { openDocument } from './documents.js';
 import { playSound } from './sounds.js';
+import { t, tData, onLangChange } from './i18n.js';
 
 const container = document.getElementById('folders-container');
 let folderElements = [];
@@ -18,6 +19,26 @@ export function initFolders(foldersData) {
     folderElements.push({ el, data: folder });
   });
 
+  // Register language change to update folder labels/tabs/stamps
+  onLangChange(() => {
+    folderElements.forEach(({ el, data }) => {
+      const labelEl = el.querySelector('.folder-label');
+      const tabSpan = el.querySelector('.folder-tab span');
+      const stampEl = el.querySelector('.folder-stamp');
+
+      if (labelEl) labelEl.textContent = tData(data.label, data.label_en);
+      if (tabSpan) tabSpan.textContent = tData(data.tab, data.tab_en);
+      if (stampEl) {
+        const stamps = t('folder.stamps');
+        if (data.id === 'secret') {
+          stampEl.textContent = t('folder.secret');
+        } else {
+          stampEl.textContent = stamps[Math.floor(Math.random() * stamps.length)];
+        }
+      }
+    });
+  });
+
   return folderElements;
 }
 
@@ -32,42 +53,20 @@ function createFolderElement(folder) {
   el.style.top = `${folder.position.y}%`;
   el.style.transform = `rotate(${folder.position.rotation}deg)`;
 
-  const stamps = ['AKTİF', 'İNCELE', 'ÖNEMLİ', 'KAYIT', 'DOSYA'];
-  const stamp = folder.id === 'secret' ? 'GİZLİ' : stamps[Math.floor(Math.random() * stamps.length)];
+  const stamps = t('folder.stamps');
+  const stamp = folder.id === 'secret' ? t('folder.secret') : stamps[Math.floor(Math.random() * stamps.length)];
 
   el.innerHTML = `
-    <div class="folder-tab"><span>${folder.tab}</span></div>
+    <div class="folder-tab"><span>${tData(folder.tab, folder.tab_en)}</span></div>
     <div class="folder-body">
       <span class="folder-stamp">${stamp}</span>
     </div>
-    <div class="folder-label">${folder.label}</div>
+    <div class="folder-label">${tData(folder.label, folder.label_en)}</div>
   `;
 
-  // Double click or tap to open
-  el.addEventListener('dblclick', () => {
-    openDocument(folder);
-  });
-
-  // Single click: bring to front
+  // Bring to front
   el.addEventListener('mousedown', () => {
     el.style.zIndex = getNextZ();
-    playSound('paper-shuffle');
-  });
-
-  // Mobile: tap to open (with delay to distinguish from drag)
-  let tapTimer = null;
-  let tapped = false;
-  el.addEventListener('touchend', (e) => {
-    if (tapped) {
-      // Double tap
-      clearTimeout(tapTimer);
-      tapped = false;
-      openDocument(folder);
-      e.preventDefault();
-    } else {
-      tapped = true;
-      tapTimer = setTimeout(() => { tapped = false; }, 300);
-    }
   });
 
   return el;

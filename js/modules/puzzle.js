@@ -3,6 +3,7 @@ import { Draggable } from 'gsap/Draggable';
 import { playSound, stopSound } from './sounds.js';
 import { openDocument } from './documents.js';
 import { getNextZ } from './desk.js';
+import { t } from './i18n.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -34,25 +35,24 @@ export function initPuzzle(secretFolderData) {
   function updateCoffeeVisual() {
     if (!coffeeEl) return;
     const pct = coffeeLevel / 5;
-    const maxSize = 64; // full coffee diameter
-    const minSize = 10;
+    const mugWidth = mug.offsetWidth || 100;
+    const maxSize = mugWidth * 0.52;
+    const minSize = mugWidth * 0.08;
     const size = minSize + (maxSize - minSize) * pct;
-    const offset = (maxSize - size) / 2;
     coffeeEl.style.width = `${size}px`;
     coffeeEl.style.height = `${size}px`;
-    coffeeEl.style.top = `${15 + offset}px`;
-    coffeeEl.style.left = `${9 + offset}px`;
-    coffeeEl.style.opacity = pct < 0.1 ? '0.3' : '1';
+    // top/left stay at 50%/46% with transform: translate(-50%,-50%) from CSS
+    coffeeEl.style.opacity = pct < 0.1 ? '0.2' : '1';
   }
+
+  // Set initial coffee visual based on mug size
+  updateCoffeeVisual();
 
   let coffeeBusy = false;
 
-  mug.addEventListener('click', (e) => {
-    if (isDragging || coffeeBusy) return;
-    e.stopPropagation();
-
+  function sipCoffee() {
+    if (coffeeBusy) return;
     coffeeBusy = true;
-
     if (coffeeLevel > 0) {
       coffeeLevel--;
       playSound('sip-coffee');
@@ -71,7 +71,7 @@ export function initPuzzle(secretFolderData) {
         }
       }, 400);
     }
-  });
+  }
 
   // Step 1: Make coffee mug draggable
   mugDraggable = Draggable.create(mug, {
@@ -79,12 +79,14 @@ export function initPuzzle(secretFolderData) {
     bounds: '#desk-surface',
     cursor: 'grab',
     activeCursor: 'grabbing',
+    minimumMovement: 3,
     onPress() {
       mug.style.zIndex = getNextZ();
-      isDragging = false;
+    },
+    onClick() {
+      sipCoffee();
     },
     onDragStart() {
-      isDragging = true;
       playSound('desk-object');
       gsap.to(mug, { scale: 1.1, duration: 0.2 });
     },
@@ -95,8 +97,6 @@ export function initPuzzle(secretFolderData) {
       stopSound('desk-object');
       gsap.to(mug, { scale: 1, duration: 0.2 });
       checkMugPosition();
-      // Reset drag flag after a tick so click doesn't fire
-      setTimeout(() => { isDragging = false; }, 50);
     },
   })[0];
 
@@ -200,12 +200,14 @@ function startTerminalSequence() {
   // Play terminal typing sound
   playSound('terminal-type');
 
-  // Animate terminal lines
+  // Animate terminal lines with auto-scroll
+  const screen = compartment.querySelector('.embedded-screen');
   const lines = compartment.querySelectorAll('.terminal-lines .term-line');
   lines.forEach((line) => {
     const delay = parseInt(line.dataset.delay) || 0;
     setTimeout(() => {
       line.classList.add('visible');
+      if (screen) screen.scrollTop = screen.scrollHeight;
     }, delay + 300);
   });
 
@@ -277,9 +279,10 @@ function checkUsbInPort(dropped) {
       ease: 'power3.in',
     });
 
-    // Step 3: Clip connector, only body back visible
+    // Step 3: Clip connector, drop to desk level
     tl.call(() => {
       usb.style.clipPath = 'inset(0 55% 0 0)';
+      usb.style.zIndex = '3';
       usb.classList.add('usb-active');
       setTimeout(() => runUnlockSequence(), 400);
     });
@@ -293,17 +296,19 @@ function runUnlockSequence() {
   termPost.classList.remove('hidden');
   const postLines = termPost.querySelectorAll('.term-line');
 
+  const screen = document.querySelector('.embedded-screen');
   postLines.forEach((line, i) => {
     setTimeout(() => {
       line.style.opacity = '1';
       line.style.transform = 'translateX(0)';
+      if (screen) screen.scrollTop = screen.scrollHeight;
     }, i * 500);
   });
 
   const totalDelay = postLines.length * 500 + 500;
 
   setTimeout(() => {
-    statusText.textContent = 'ERİŞİM SAĞLANDI';
+    statusText.textContent = t('terminal.granted');
     playSound('access-granted');
     statusText.classList.add('access-granted');
   }, totalDelay);
@@ -327,32 +332,17 @@ function revealSecretCompartment() {
       <span style="color:#ffd700;">???</span>
     </div>
     <div class="folder-body" style="background:#8b0000; border:1px solid #a00;">
-      <span class="folder-stamp" style="color:#ffd700; border-color:#ffd700;">GİZLİ</span>
+      <span class="folder-stamp" style="color:#ffd700; border-color:#ffd700;">${t('folder.secret')}</span>
     </div>
-    <div class="folder-label" style="color:#ffd700;">GİZLİ DOSYA</div>
+    <div class="folder-label" style="color:#ffd700;">${t('folder.secretFile')}</div>
   `;
 
-  folderEl.addEventListener('click', () => {
-    if (window.__secretFolderData) {
-      openDocument(window.__secretFolderData);
-    }
-  });
-
-  // Double click also works
-  folderEl.addEventListener('dblclick', () => {
-    if (window.__secretFolderData) {
-      openDocument(window.__secretFolderData);
-    }
-  });
+  // Click handled by GSAP Draggable onClick callback
 
   secretInside.appendChild(folderEl);
 
-  // Show secret compartment at desk level - user must move folders to see it
+  // Show secret compartment instantly
   secretComp.classList.remove('hidden');
-  gsap.fromTo(secretComp,
-    { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' }
-  );
 
   // Make secret lid draggable (user slides it to reveal folder)
   setTimeout(() => {
@@ -406,8 +396,12 @@ function makeSecretFolderDraggable() {
     bounds: '#desk-surface',
     cursor: 'grab',
     activeCursor: 'grabbing',
+    minimumMovement: 3,
     onPress() {
       folderEl.style.zIndex = getNextZ();
+    },
+    onClick() {
+      if (window.__secretFolderData) openDocument(window.__secretFolderData);
     },
     onDragStart() {
       playSound('paper-shuffle');

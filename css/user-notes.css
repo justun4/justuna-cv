@@ -104,7 +104,7 @@
 }
 
 .user-note-text:empty::before {
-  content: 'Not yaz...';
+  content: var(--note-placeholder, 'Write a note...');
   color: rgba(0, 0, 0, 0.2);
   font-style: italic;
 }

@@ -1,52 +1,20 @@
-/* Folded newspaper on desk */
+/* Folded newspaper on desk (PNG image) */
 .newspaper-folded {
   position: absolute;
   z-index: 10;
   width: 250px;
   height: 150px;
-  background: linear-gradient(180deg, #e8dcc4 0%, #d8ccb0 40%, #c8bca0 100%);
-  border: 2px solid rgba(150, 130, 100, 0.4);
+  background: url('/assets/images/newspaper.png') center/cover no-repeat;
   border-radius: 4px;
   box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   pointer-events: auto;
-  filter: sepia(0.3);
 }
 
-.newspaper-folded::before {
-  content: '';
-  position: absolute;
-  inset: 10px;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent 0px,
-    transparent 7px,
-    rgba(100, 80, 50, 0.15) 7px,
-    rgba(100, 80, 50, 0.15) 9px
-  );
-  pointer-events: none;
-}
-
-.newspaper-fold-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, rgba(100, 80, 50, 0.3), transparent);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+/* Hide inner structural elements (image replaces them) */
+.newspaper-fold-line,
 .newspaper-title-peek {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-typewriter);
-  font-size: 1.2rem;
-  color: rgba(60, 40, 20, 0.6);
-  letter-spacing: 6px;
-  white-space: nowrap;
+  display: none;
 }
 
 /* Overlay */
@@ -57,6 +25,14 @@
   align-items: center;
   justify-content: center;
   z-index: var(--z-overlay);
+}
+
+.newspaper-full .overlay-close-btn {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.newspaper-full .overlay-close-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .newspaper-backdrop {

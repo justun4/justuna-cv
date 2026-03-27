@@ -54,8 +54,45 @@ img, a, div {
   -webkit-user-drag: none;
 }
 
+/* Overlays must allow normal touch behavior */
+.fingerprint-overlay,
+.cipher-overlay,
+.newspaper-overlay,
+.evidence-overlay,
+#document-overlay {
+  touch-action: auto !important;
+}
+
+.fingerprint-overlay *,
+.cipher-overlay *,
+.newspaper-overlay *,
+.evidence-overlay *,
+#document-overlay * {
+  touch-action: auto !important;
+}
+
 .hidden {
   display: none !important;
+}
+
+.overlay-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+  padding: 5px 10px;
+  transition: color 0.2s;
+  touch-action: manipulation;
+}
+
+.overlay-close-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 ::selection {
@@ -73,4 +110,31 @@ img, a, div {
 ::-webkit-scrollbar-thumb {
   background: var(--color-manila);
   border-radius: 3px;
+}
+
+/* Language Toggle Button */
+#lang-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 600;
+  background: rgba(26, 18, 9, 0.8);
+  border: 1px solid rgba(196, 165, 110, 0.3);
+  color: var(--color-manila);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: var(--font-typewriter);
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+#lang-toggle:hover {
+  border-color: var(--color-gold);
+  background: rgba(26, 18, 9, 0.95);
 }

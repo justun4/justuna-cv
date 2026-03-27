@@ -1,3 +1,4 @@
+import { initI18n } from './modules/i18n.js';
 import { initDesk } from './modules/desk.js';
 import { initLamp } from './modules/lamp.js';
 import { initFolders } from './modules/folders.js';
@@ -15,6 +16,9 @@ import { initUserNotes } from './modules/user-notes.js';
 import cvData from './data/cv-data.json';
 
 function init() {
+  // Initialize i18n first (before any other module)
+  initI18n();
+
   // Initialize core systems
   initDesk();
   initLamp();
@@ -42,8 +46,10 @@ function init() {
   initEvidenceBoard(cvData.evidenceBoard);
   initUserNotes();
 
-  // Prevent browser drag behavior on all desk elements
-  document.getElementById('desk-surface').addEventListener('dragstart', e => e.preventDefault());
+  // Prevent browser drag/download behavior
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('drop', e => e.preventDefault());
+  document.addEventListener('dragover', e => e.preventDefault());
 
   // Setup intro
   setupIntro();

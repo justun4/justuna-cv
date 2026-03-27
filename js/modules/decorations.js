@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound, stopSound } from './sounds.js';
+import { t, tData, getLang, onLangChange } from './i18n.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -15,11 +16,20 @@ export function initDecorations(decorData) {
   createStapler(60, 90, 10);
   createWalkieTalkie(40, 55, 75);
 
+  const stickyElements = [];
   if (decorData && decorData.stickyNotes) {
     decorData.stickyNotes.forEach(note => {
-      createStickyNote(note.text, note.position.x, note.position.y, note.color, note.rotation);
+      const el = createStickyNote(tData(note.text, note.text_en), note.position.x, note.position.y, note.color, note.rotation);
+      stickyElements.push({ el, note });
     });
   }
+
+  // Update sticky notes on language change
+  onLangChange(() => {
+    stickyElements.forEach(({ el, note }) => {
+      el.textContent = tData(note.text, note.text_en);
+    });
+  });
 
   // Make all decoration items draggable
   draggableItems.forEach(({ el, sound }) => makeDraggable(el, sound));
@@ -69,17 +79,19 @@ function createSmartphone(x, y, rotation) {
   const dateEl = document.createElement('div');
   dateEl.className = 'sp-date';
 
-  const gunler = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
-  const aylar = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-
   function updatePhone() {
     const now = new Date();
+    const days = t('days');
+    const months = t('months');
     timeEl.textContent = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
-    dateEl.textContent = `${gunler[now.getDay()]}, ${now.getDate()} ${aylar[now.getMonth()]}`;
+    dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
   }
 
   updatePhone();
   setInterval(updatePhone, 1000);
+
+  // Update on language change
+  onLangChange(() => updatePhone());
 
   const screen = document.createElement('div');
   screen.className = 'sp-screen';
@@ -109,7 +121,7 @@ function createStapler(x, y, rotation) {
   stapler.style.left = `${x}%`;
   stapler.style.top = `${y}%`;
   stapler.style.transform = `rotate(${rotation}deg)`;
-  stapler.innerHTML = '<div class="stapler-front"></div>';
+  // PNG image replaces all inner structural elements
   addToDesk(stapler, 'desk-object');
 }
 
@@ -119,9 +131,7 @@ function createWalkieTalkie(x, y, rotation) {
   wt.style.left = `${x}%`;
   wt.style.top = `${y}%`;
   wt.style.transform = `rotate(${rotation}deg)`;
-  let keys = '';
-  for (let i = 0; i < 12; i++) keys += '<div class="wt-key"></div>';
-  wt.innerHTML = `<div class="wt-speaker"></div><div class="wt-screen"></div><div class="wt-keypad">${keys}</div><div class="wt-side"></div>`;
+  // PNG image replaces all inner structural elements
   addToDesk(wt, 'desk-object');
 }
 
@@ -156,4 +166,5 @@ function createStickyNote(text, x, y, color, rotation = 0) {
   note.style.transform = `rotate(${rotation}deg)`;
   note.textContent = text;
   addToDesk(note, 'note-shuffle');
+  return note;
 }

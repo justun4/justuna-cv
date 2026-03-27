@@ -1,108 +1,23 @@
-/* Cipher device on desk - antique brass compass style */
+/* Cipher device on desk - PNG image of brass cipher disk */
 .cipher-device {
   position: absolute;
   z-index: 10;
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, #c9a84c 0%, #a88a3c 30%, #8a7540 55%, #6a5530 80%, #5a4525 100%);
-  border: 5px solid #4a3a1a;
-  box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.6),
-    inset 0 2px 6px rgba(255, 230, 150, 0.25),
-    inset 0 -4px 10px rgba(0, 0, 0, 0.4),
-    0 0 0 2px #3a2a10;
+  background: url('/assets/images/kilit.png') center/contain no-repeat;
   pointer-events: auto;
   cursor: pointer;
   filter: drop-shadow(4px 6px 10px rgba(0, 0, 0, 0.6));
 }
 
-/* Outer ring markings */
-.cipher-device::before {
-  content: '';
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  border: 2px solid rgba(90, 69, 37, 0.4);
-  background: transparent;
-}
-
-/* Inner disc */
-.cipher-inner-mark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid rgba(74, 58, 26, 0.6);
-  background:
-    radial-gradient(circle at 35% 35%, rgba(255,255,255,0.1) 0%, transparent 40%),
-    radial-gradient(circle, #b89a44 0%, #9a8040 40%, #7a6530 100%);
-  box-shadow: inset 0 2px 4px rgba(255, 230, 150, 0.2), inset 0 -2px 4px rgba(0,0,0,0.2);
-}
-
-/* Decorative dots around inner ring */
-.cipher-inner-mark::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border-radius: 50%;
-  border: 1px dotted rgba(90, 69, 37, 0.3);
-}
-
-/* Tick marks around the outer ring */
-.cipher-ticks {
-  position: absolute;
-  inset: 0;
-}
-
-.cipher-tick {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  width: 1.5px;
-  height: 8px;
-  margin-left: -0.75px;
-  background: rgba(74, 58, 26, 0.4);
-  transform-origin: center calc(90px - 12px);
-}
-
-.cipher-tick.major {
-  width: 2px;
-  height: 12px;
-  background: rgba(74, 58, 26, 0.6);
-  margin-left: -1px;
-}
-
-/* Inner symbol */
+/* Hide inner structural elements (image replaces them) */
+.cipher-inner-mark,
+.cipher-inner-mark::before,
+.cipher-ticks,
+.cipher-tick,
 .cipher-inner-symbol {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2.2rem;
-  color: #4a3a1a;
-  opacity: 0.6;
-}
-
-/* Center pin */
-.cipher-device::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #d4b050 0%, #8a7040 100%);
-  border: 2px solid #5a4525;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-  z-index: 2;
+  display: none;
 }
 
 /* Cipher overlay */

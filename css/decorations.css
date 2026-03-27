@@ -84,56 +84,15 @@
   }
 }
 
-/* Pen - ballpoint style */
+/* Pen - PNG image */
 .desk-pen {
   position: absolute;
   width: 140px;
-  height: 8px;
+  height: 18px;
+  background: url('/assets/images/kalem.png') center/contain no-repeat;
   pointer-events: auto;
   cursor: grab;
   filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
-}
-
-/* Pen barrel */
-.desk-pen::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 105px;
-  height: 8px;
-  background: linear-gradient(
-    180deg,
-    #2a2a2a 0%,
-    #1a1a1a 30%,
-    #111 60%,
-    #1a1a1a 100%
-  );
-  border-radius: 3px 0 0 3px;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.08);
-}
-
-/* Pen gold band + tip */
-.desk-pen::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 35px;
-  height: 8px;
-  background: linear-gradient(
-    90deg,
-    #c9a84c 0%,
-    #e8c56a 15%,
-    #c9a84c 30%,
-    #333 32%,
-    #222 60%,
-    #444 80%,
-    #222 95%,
-    #111 100%
-  );
-  border-radius: 0 2px 2px 0;
-  clip-path: polygon(0 0, 100% 30%, 100% 70%, 0 100%);
 }
 
 /* Paper clips - flat on desk */
@@ -225,20 +184,16 @@
   50% { opacity: 0; }
 }
 
-/* ===== SMARTPHONE (top-down, laying on desk) ===== */
+/* ===== SMARTPHONE (PNG image) ===== */
 .smartphone {
   position: absolute;
   width: 82px;
   height: 165px;
-  background: linear-gradient(145deg, #1a1a1a 0%, #111 50%, #0a0a0a 100%);
+  background: url('/assets/images/phone.png') center/contain no-repeat;
   border-radius: 14px;
-  border: 1.5px solid #333;
   pointer-events: auto;
   cursor: grab;
   filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.7));
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.04),
-    inset 0 1px 1px rgba(255,255,255,0.03);
 }
 
 /* Screen */
@@ -285,211 +240,51 @@
   border-radius: 4px;
 }
 
-/* ===== MAGNIFYING GLASS ===== */
+/* ===== MAGNIFYING GLASS (PNG image) ===== */
 .magnifier {
   position: absolute;
-  width: 45px;
-  height: 75px;
+  width: 55px;
+  height: 85px;
+  background: url('/assets/images/mercek.png') center/contain no-repeat;
   pointer-events: auto;
   cursor: grab;
   filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.6));
 }
 
-/* Glass lens */
-.magnifier::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(200,220,255,0.12) 0%, rgba(150,180,220,0.06) 50%, transparent 100%);
-  border: 3px solid #8a7540;
-  box-shadow:
-    inset 0 0 10px rgba(255,255,255,0.03),
-    0 0 3px rgba(0,0,0,0.3);
-}
-
-/* Handle */
-.magnifier::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 17px;
-  width: 7px;
-  height: 38px;
-  background: linear-gradient(180deg, #8a7540 0%, #6a5530 50%, #5a4525 100%);
-  border-radius: 2px;
-  transform-origin: top center;
-  transform: rotate(-5deg);
-}
-
-/* ===== STAPLER (top-down, sideways) ===== */
+/* ===== STAPLER (PNG image) ===== */
 .stapler {
   position: absolute;
-  width: 65px;
-  height: 22px;
+  width: 75px;
+  height: 32px;
+  background: url('/assets/images/zimba.png') center/contain no-repeat;
   pointer-events: auto;
   cursor: grab;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* Stapler top part */
-.stapler::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 65px;
-  height: 12px;
-  background: linear-gradient(180deg, #8b1a1a 0%, #6a1010 50%, #551010 100%);
-  border-radius: 3px 3px 1px 1px;
-  border: 1px solid #4a0a0a;
-  box-shadow: inset 0 1px 2px rgba(255,100,100,0.1);
-}
-
-/* Stapler base */
-.stapler::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 3px;
-  width: 60px;
-  height: 10px;
-  background: linear-gradient(180deg, #333 0%, #222 50%, #1a1a1a 100%);
-  border-radius: 1px 1px 2px 2px;
-  border: 1px solid #3a3a3a;
-}
-
-/* Stapler front metal part */
+/* Hide inner structural elements (image replaces them) */
 .stapler-front {
-  position: absolute;
-  right: -2px;
-  top: 3px;
-  width: 6px;
-  height: 8px;
-  background: #999;
-  border-radius: 0 2px 2px 0;
-  border: 1px solid #777;
+  display: none;
 }
 
-/* ===== WALKIE-TALKIE (laying on side) ===== */
+/* ===== WALKIE-TALKIE (PNG image) ===== */
 .walkie-talkie {
   position: absolute;
   width: 80px;
   height: 190px;
+  background: url('/assets/images/telsiz.png') center/contain no-repeat;
   pointer-events: auto;
   cursor: grab;
   filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.6));
 }
 
-/* Body */
-.walkie-talkie::before {
-  content: '';
-  position: absolute;
-  top: 30px;
-  left: 0;
-  width: 80px;
-  height: 160px;
-  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 40%, #151515 100%);
-  border-radius: 4px 4px 6px 6px;
-  border: 1px solid #3a3a3a;
-  box-shadow:
-    inset 3px 0 6px rgba(255,255,255,0.03),
-    inset -2px 0 4px rgba(0,0,0,0.3);
-}
-
-/* Antenna */
-.walkie-talkie::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 16px;
-  width: 7px;
-  height: 40px;
-  background: linear-gradient(180deg, #555 0%, #333 50%, #222 100%);
-  border-radius: 2px 2px 0 0;
-}
-
-/* Speaker grille */
-.wt-speaker {
-  position: absolute;
-  top: 44px;
-  left: 12px;
-  width: 56px;
-  height: 44px;
-  background: repeating-linear-gradient(
-    180deg,
-    #222 0px,
-    #222 2px,
-    #1a1a1a 2px,
-    #1a1a1a 4px
-  );
-  border-radius: 2px;
-  border: 1px solid #333;
-}
-
-/* Screen */
-.wt-screen {
-  position: absolute;
-  top: 96px;
-  left: 16px;
-  width: 48px;
-  height: 20px;
-  background: #0a1a0a;
-  border: 1px solid #1a2a1a;
-  border-radius: 1px;
-  box-shadow: inset 0 0 4px rgba(0, 20, 0, 0.3);
-}
-
-/* Screen glow */
-.wt-screen::before {
-  content: '14.7';
-  font-family: 'Courier New', monospace;
-  font-size: 0.7rem;
-  color: #00aa00;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-shadow: 0 0 3px rgba(0, 170, 0, 0.4);
-}
-
-/* Keypad */
-.wt-keypad {
-  position: absolute;
-  top: 122px;
-  left: 12px;
-  width: 56px;
-  height: 56px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 2px;
-  padding: 3px;
-  background: #111;
-  border-radius: 3px;
-  border: 1px solid #2a2a2a;
-}
-
-.wt-key {
-  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 50%, #222 100%);
-  border-radius: 2px;
-  border: 1px solid #444;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.06);
-}
-
-/* Side button */
+/* Hide inner structural elements (image replaces them) */
+.wt-speaker,
+.wt-screen,
+.wt-keypad,
+.wt-key,
 .wt-side {
-  position: absolute;
-  top: 70px;
-  right: -5px;
-  width: 8px;
-  height: 24px;
-  background: #444;
-  border-radius: 0 2px 2px 0;
-  border: 1px solid #555;
+  display: none;
 }
 
 /* Small feet */

@@ -1,4 +1,8 @@
+/* ==========================================================
+   RESPONSIVE: Tablet (768px)
+   ========================================================== */
 @media (max-width: 768px) {
+  /* --- Intro --- */
   .intro-content h1 {
     font-size: 1.4rem;
     letter-spacing: 4px;
@@ -17,6 +21,7 @@
     padding: 12px 30px;
   }
 
+  /* --- Folders --- */
   .folder {
     width: 130px;
     height: 95px;
@@ -41,6 +46,7 @@
     padding: 1px 4px;
   }
 
+  /* --- Document modal --- */
   #document-modal {
     width: 95vw;
     max-height: 90vh;
@@ -66,21 +72,18 @@
     padding: 8px 15px;
   }
 
-  /* Sticky notes */
+  /* --- Sticky notes --- */
   .sticky-note {
     width: 120px;
     font-size: 0.85rem;
     padding: 10px 8px;
   }
 
-  /* Decorations scale down */
+  /* --- Decorations --- */
   .desk-pen {
     width: 90px;
-    height: 6px;
+    height: 14px;
   }
-
-  .desk-pen::before { width: 65px; height: 6px; }
-  .desk-pen::after { width: 25px; height: 6px; }
 
   .rotary-phone {
     width: 55px;
@@ -99,29 +102,14 @@
   }
 
   .magnifier {
-    width: 32px;
-    height: 55px;
-  }
-
-  .magnifier::before {
-    width: 28px;
-    height: 28px;
-    border-width: 2px;
-  }
-
-  .magnifier::after {
-    width: 5px;
-    height: 28px;
-    left: 12px;
+    width: 40px;
+    height: 65px;
   }
 
   .stapler {
-    width: 45px;
-    height: 16px;
+    width: 55px;
+    height: 24px;
   }
-
-  .stapler::before { height: 9px; width: 45px; }
-  .stapler::after { height: 7px; width: 40px; }
 
   .desk-clock {
     width: 60px;
@@ -132,47 +120,22 @@
     font-size: 0.75rem;
   }
 
-  /* Puzzle elements */
-  .puzzle-mug {
-    width: 70px;
-    height: 70px;
-  }
+  /* --- Puzzle: Mug (PNG) --- */
+  .puzzle-mug { width: 85px; height: 85px; }
 
-  .puzzle-mug::before {
-    width: 55px;
-    height: 55px;
-  }
-
-  .puzzle-mug::after {
-    width: 14px;
-    height: 28px;
-    top: 18px;
-    border-width: 3px;
-  }
-
-  .mug-coffee {
-    top: 12px;
-    left: 7px;
-    width: 43px;
-    height: 43px;
-  }
-
-  .puzzle-usb {
-    width: 45px;
-    height: 18px;
-  }
-
-  .usb-body { width: 30px; height: 18px; }
-  .usb-connector { width: 13px; height: 13px; top: 2.5px; }
+  /* --- USB (PNG) --- */
+  .puzzle-usb { width: 90px; height: 36px; }
 
   .hidden-button {
     width: 24px;
     height: 24px;
   }
 
+  /* --- Compartments --- */
   .desk-compartment {
-    width: 200px;
-    height: 130px;
+    width: 220px;
+    height: 140px;
+    right: calc(16% - 40px);
   }
 
   .secret-compartment {
@@ -180,6 +143,7 @@
     height: 155px;
   }
 
+  /* --- Lamp --- */
   #lamp-light {
     background: radial-gradient(
       ellipse 350px 300px at var(--mouse-x) var(--mouse-y),
@@ -191,49 +155,32 @@
     );
   }
 
-  /* New features - tablet */
-  .newspaper-folded {
-    width: 180px;
-    height: 110px;
-  }
+  /* --- Radio (real sizes) --- */
+  .desk-radio { width: 165px; height: 100px; }
+  .radio-controls { bottom: 6px; }
+  .radio-vol-btn { width: 22px; height: 22px; font-size: 0.9rem; }
+  .radio-vol-display { font-size: 0.5rem; }
+  .radio-led { bottom: 10px; right: 32px; width: 10px; height: 10px; }
 
-  .newspaper-title-peek {
-    font-size: 0.9rem;
-  }
+  /* --- Newspaper (real sizes) --- */
+  .newspaper-folded { width: 185px; height: 115px; }
 
-  .desk-radio {
-    width: 160px;
-    height: 100px;
-  }
+  /* --- Cipher (real sizes) --- */
+  .cipher-device { width: 130px; height: 130px; }
 
-  .cipher-device {
-    width: 130px;
-    height: 130px;
-  }
+  /* --- Smartphone (real sizes) --- */
+  .smartphone { width: 60px; height: 120px; border-radius: 10px; }
+  .sp-screen { top: 7px; left: 4px; right: 4px; bottom: 7px; border-radius: 7px; }
+  .sp-time { font-size: 1.2rem; }
+  .sp-date { font-size: 0.4rem; }
+  .sp-notch { top: 10px; width: 18px; height: 5px; }
 
-  .walkie-talkie {
-    width: 60px;
-    height: 140px;
-  }
+  /* --- Walkie-talkie (real sizes) --- */
+  .walkie-talkie { width: 60px; height: 142px; }
 
-  .smartphone {
-    width: 60px;
-    height: 120px;
-  }
-
-  .magnifier {
-    width: 35px;
-    height: 60px;
-  }
-
-  .stapler {
-    width: 50px;
-    height: 16px;
-  }
-
-  /* Overlays */
+  /* --- Overlays --- */
   .newspaper-full {
-    padding: 18px 20px;
+    padding: 15px 18px;
   }
 
   .fp-panel {
@@ -247,51 +194,97 @@
   }
 
   .eb-board {
+    width: 95vw;
     max-width: 95vw;
-    padding: 15px;
+    padding: 12px;
   }
 
-  .radio-vol-btn {
-    width: 20px;
-    height: 20px;
-    font-size: 0.85rem;
-  }
+  /* --- Newspaper overlay --- */
+  .np-headline { font-size: 1.8rem; letter-spacing: 6px; }
+  .np-masthead { font-size: 1.2rem; }
+  .np-body { flex-direction: column; }
+  .np-col-left { flex: none; border-right: none; padding-right: 0; border-bottom: 1px solid rgba(60,40,20,0.25); padding-bottom: 15px; }
+  .np-wanted-poster { max-width: 200px; }
 
-  .radio-vol-display {
-    font-size: 0.5rem;
-  }
+  /* --- Evidence board --- */
+  .eb-cork { height: 350px; max-height: 60vh; }
+  .eb-node-content { font-size: 0.75rem; padding: 5px 8px; max-width: 120px; }
+
+  /* --- Cipher overlay --- */
+  .cipher-wheel { width: 220px; height: 220px; }
+
+  /* --- Touch targets --- */
+  .hidden-button { width: 40px; height: 40px; }
+
+  /* --- Terminal --- */
+  .term-line { font-size: 0.5rem; }
 }
 
+
+/* ==========================================================
+   RESPONSIVE: Phone (480px)
+   ========================================================== */
 @media (max-width: 480px) {
-  .folder {
-    width: 110px;
-    height: 80px;
+  /* --- Lamp off on mobile --- */
+  #lamp-light { display: none; }
+
+  /* --- Mug (PNG) --- */
+  .puzzle-mug { width: 75px; height: 75px; }
+
+  /* --- USB (PNG) --- */
+  .puzzle-usb { width: 75px; height: 30px; }
+
+  /* --- Radio (real sizes) --- */
+  .desk-radio { width: 120px; height: 75px; }
+  .radio-controls { bottom: 5px; gap: 3px; }
+  .radio-vol-btn { width: 20px; height: 20px; font-size: 0.8rem; }
+  .radio-vol-display { font-size: 0.45rem; min-width: 24px; }
+  .radio-led { bottom: 8px; right: 22px; width: 8px; height: 8px; }
+
+  /* --- Newspaper (real sizes) --- */
+  .newspaper-folded { width: 130px; height: 80px; }
+
+  /* --- Cipher (real sizes) --- */
+  .cipher-device { width: 90px; height: 90px; }
+
+  /* --- Smartphone (real sizes) --- */
+  .smartphone { width: 48px; height: 95px; border-radius: 8px; }
+  .sp-screen { top: 6px; left: 3px; right: 3px; bottom: 6px; border-radius: 6px; }
+  .sp-time { font-size: 1rem; }
+  .sp-date { font-size: 0.35rem; }
+  .sp-notch { top: 8px; width: 14px; height: 4px; }
+
+  /* --- Hide complex items on small screens --- */
+  .walkie-talkie,
+  .stapler {
+    display: none;
   }
 
-  .folder-tab {
-    width: 62px;
-    height: 18px;
-    top: -14px;
-  }
+  .magnifier { width: 40px; height: 65px; }
 
-  .folder-tab span {
-    font-size: 0.4rem;
-  }
+  /* --- Folders --- */
+  .folder { width: 110px; height: 80px; }
+  .folder-tab { width: 62px; height: 18px; top: -14px; }
+  .folder-tab span { font-size: 0.4rem; }
+  .folder-label { font-size: 1.1rem; }
 
   .folder-stamp {
     display: none;
   }
 
+  /* --- Compartments --- */
+  .desk-compartment { width: 200px; height: 125px; }
+  .secret-compartment { width: 165px; height: 155px; }
+
+  /* --- Sticky notes --- */
   .sticky-note {
     width: 100px;
     font-size: 0.75rem;
     padding: 8px 6px;
   }
 
-  /* Hide complex decorations on small screens */
-  .rotary-phone,
-  .magnifier,
-  .stapler {
+  /* --- Hide rotary phone --- */
+  .rotary-phone {
     display: none;
   }
 
@@ -308,70 +301,21 @@
     font-size: 0.65rem;
   }
 
-  .puzzle-mug {
-    width: 55px;
-    height: 55px;
+  /* --- Toggle buttons --- */
+  #lang-toggle { width: 50px; height: 50px; top: 12px; left: 12px; right: auto; font-size: 0.85rem; }
+  #sound-toggle { width: 40px; height: 40px; bottom: 12px; right: 12px; }
+  #add-note-btn { width: 40px; height: 40px; bottom: 12px; left: 12px; font-size: 1.2rem; }
+
+  /* --- Evidence trigger --- */
+  .evidence-trigger {
+    padding: 6px 16px;
   }
 
-  .puzzle-mug::before {
-    width: 42px;
-    height: 42px;
+  .evidence-trigger-label {
+    font-size: 0.8rem;
   }
 
-  .puzzle-mug::after {
-    width: 12px;
-    height: 22px;
-    top: 15px;
-  }
-
-  .mug-coffee {
-    top: 10px;
-    left: 6px;
-    width: 32px;
-    height: 32px;
-  }
-
-  .desk-compartment {
-    width: 170px;
-    height: 110px;
-  }
-
-  .secret-compartment {
-    width: 145px;
-    height: 130px;
-  }
-
-  /* New features - phone */
-  .newspaper-folded {
-    width: 140px;
-    height: 85px;
-  }
-
-  .desk-radio {
-    width: 120px;
-    height: 75px;
-  }
-
-  .cipher-device {
-    width: 100px;
-    height: 100px;
-  }
-
-  .walkie-talkie,
-  .magnifier,
-  .stapler {
-    display: none;
-  }
-
-  .smartphone {
-    width: 50px;
-    height: 100px;
-  }
-
-  .sp-time {
-    font-size: 1rem;
-  }
-
+  /* --- Fingerprint --- */
   .fp-candidates {
     flex-wrap: wrap;
   }
@@ -380,11 +324,181 @@
     padding: 4px;
   }
 
-  .evidence-trigger {
-    padding: 6px 16px;
+  .fp-panel { padding: 15px; }
+  .fp-title { font-size: 1.2rem; }
+  .fp-subtitle { font-size: 0.8rem; }
+
+  /* --- Newspaper overlay --- */
+  .np-headline { font-size: 1.4rem; letter-spacing: 4px; }
+  .np-masthead { font-size: 0.9rem; }
+
+  /* --- Evidence board --- */
+  .eb-cork { height: 250px; max-height: 50vh; }
+  .eb-node-content { font-size: 0.65rem; max-width: 80px; padding: 3px 5px; }
+
+  /* --- Cipher overlay --- */
+  .cipher-wheel { width: 180px; height: 180px; }
+}
+
+
+/* ==========================================================
+   RESPONSIVE: Small Phone / iPhone SE (375px)
+   ========================================================== */
+@media (max-width: 375px) {
+  /* --- Mug (real sizes) --- */
+  .puzzle-mug { width: 65px; height: 65px; }
+
+  /* --- USB (PNG) --- */
+  .puzzle-usb { width: 65px; height: 26px; }
+
+  /* --- Radio (real sizes) --- */
+  .desk-radio { width: 100px; height: 62px; }
+  .radio-controls { bottom: 4px; gap: 2px; }
+  .radio-vol-btn { width: 18px; height: 18px; font-size: 0.7rem; }
+  .radio-vol-display { font-size: 0.4rem; min-width: 20px; }
+  .radio-led { bottom: 6px; right: 18px; width: 7px; height: 7px; }
+
+  /* --- Newspaper (real sizes) --- */
+  .newspaper-folded { width: 105px; height: 65px; }
+
+  /* --- Cipher (real sizes) --- */
+  .cipher-device { width: 72px; height: 72px; }
+
+  /* --- Smartphone (real sizes) --- */
+  .smartphone { width: 40px; height: 78px; border-radius: 7px; }
+  .sp-screen { top: 5px; left: 3px; right: 3px; bottom: 5px; border-radius: 5px; }
+  .sp-time { font-size: 0.8rem; }
+  .sp-date { font-size: 0.3rem; }
+  .sp-notch { top: 7px; width: 12px; height: 3px; }
+
+  /* --- Compartments --- */
+  .desk-compartment { width: 170px; height: 105px; right: calc(16% - 25px); top: calc(62% - 115px); }
+  .secret-compartment { width: 140px; height: 135px; }
+
+  /* --- Folders --- */
+  .folder { width: 95px; height: 68px; }
+  .folder-tab { width: 55px; height: 16px; top: -12px; }
+  .folder-tab span { font-size: 0.35rem; }
+  .folder-label { font-size: 0.9rem; }
+  .folder-stamp { display: none; }
+
+  /* --- Buttons --- */
+  #lang-toggle { width: 44px; height: 44px; top: 8px; left: 8px; right: auto; font-size: 0.75rem; }
+  #sound-toggle { width: 36px; height: 36px; bottom: 8px; right: 8px; font-size: 1rem; }
+  #add-note-btn { width: 36px; height: 36px; bottom: 8px; left: 8px; font-size: 1rem; }
+
+  /* --- Hidden button --- */
+  .hidden-button { width: 22px; height: 22px; }
+
+  /* --- Evidence trigger --- */
+  .evidence-trigger { padding: 5px 12px; }
+  .evidence-trigger-label { font-size: 0.65rem; letter-spacing: 2px; }
+  .evidence-trigger-pin { width: 16px; height: 16px; margin-bottom: 4px; }
+
+  /* --- Sticky notes --- */
+  .sticky-note { width: 140px; padding: 12px 10px; font-size: 1.1rem; }
+
+  /* --- Pen --- */
+  .desk-pen { width: 90px; height: 12px; }
+
+  /* --- Clock --- */
+  .desk-clock {
+    width: 48px;
+    height: 22px;
   }
 
-  .evidence-trigger-label {
+  .clock-display {
+    font-size: 0.55rem;
+  }
+
+  /* --- Lamp - smaller on mobile --- */
+  #lamp-light {
+    background: radial-gradient(
+      ellipse 280px 250px at var(--mouse-x) var(--mouse-y),
+      transparent 0%,
+      rgba(0, 0, 0, 0.25) 30%,
+      rgba(0, 0, 0, 0.55) 55%,
+      rgba(0, 0, 0, 0.8) 80%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+
+  /* --- Overlays --- */
+  .newspaper-full { padding: 12px 14px; width: 95vw; }
+  .np-headline { font-size: 1.3rem; letter-spacing: 4px; }
+  .np-masthead { font-size: 0.85rem; letter-spacing: 4px; }
+  .np-body { flex-direction: column; }
+  .np-col-left { flex: none; border-right: none; padding-right: 0; padding-bottom: 10px; }
+  .np-wanted-poster { max-width: 150px; margin: 0 auto; }
+  .np-article-title { font-size: 0.85rem; }
+  .np-article p { font-size: 0.85rem; }
+
+  .fp-panel { padding: 15px; }
+  .fp-title { font-size: 1.1rem; }
+  .fp-subtitle { font-size: 0.8rem; }
+
+  .cipher-panel { padding: 15px; }
+  .cipher-title { font-size: 1.1rem; }
+  .cipher-wheel { width: 180px; height: 180px; }
+
+  .eb-board { padding: 10px; }
+  .eb-cork { height: 220px; max-height: 50vh; }
+  .eb-node-content { font-size: 0.6rem; padding: 3px 5px; max-width: 75px; }
+  .eb-title { font-size: 0.75rem; }
+
+  /* --- Radio volume controls (must stay tappable) --- */
+  .radio-vol-btn {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  /* --- Terminal text --- */
+  .term-line { font-size: 0.45rem; }
+  .panel-status { font-size: 0.6rem; }
+
+  /* --- Document modal --- */
+  #document-modal {
+    width: 98vw;
+    max-height: 92vh;
+  }
+
+  #doc-header {
+    padding: 10px 10px 8px;
+  }
+
+  #doc-header h2 {
     font-size: 0.8rem;
   }
+
+  #doc-pages-container {
+    padding: 10px;
+  }
+
+  .doc-page {
+    font-size: 0.65rem;
+  }
+
+  /* --- Fingerprint panel --- */
+  .fp-panel {
+    padding: 12px;
+    max-width: 98vw;
+  }
+}
+
+
+/* ==========================================================
+   Touch device improvements
+   ========================================================== */
+@media (pointer: coarse) {
+  .radio-vol-btn { min-width: 44px; min-height: 44px; }
+  .hidden-button { min-width: 44px; min-height: 44px; }
+  .eb-pin { width: 24px; height: 24px; }
+  .user-note-delete { padding: 8px; font-size: 1.4rem; }
+  .user-note-drag-area { min-height: 36px; }
+}
+
+/* Combined: small touch screens get slightly smaller coarse targets */
+@media (pointer: coarse) and (max-width: 375px) {
+  .radio-vol-btn { min-width: 36px; min-height: 36px; }
+  .hidden-button { min-width: 36px; min-height: 36px; }
 }

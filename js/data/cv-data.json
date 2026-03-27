@@ -2,24 +2,31 @@
   "meta": {
     "name": "Tunahan HÜSEM",
     "title": "Bilgisayar Mühendisi",
+    "title_en": "Computer Engineer",
     "lang": "tr"
   },
   "folders": [
     {
       "id": "personal",
       "label": "Kişisel Dosya",
+      "label_en": "Personal File",
       "tab": "KİŞİSEL",
+      "tab_en": "PERSONAL",
       "position": { "x": 8, "y": 12, "rotation": -4 },
       "color": "#c4a56e",
       "pages": [
         {
           "type": "profile",
           "heading": "Şüpheli Profili",
+          "heading_en": "Suspect Profile",
           "content": {
             "name": "Tunahan HÜSEM",
             "title": "Bilgisayar Mühendisi",
+            "title_en": "Computer Engineer",
             "location": "Türkiye",
+            "location_en": "Turkey",
             "about": "Yeni şeyler deneyimlemeyi ve sorunları çözmeyi seven bir yapıya sahibim. Yaşantım boyunca birçok takım sporunda faaliyet gösterdim. Ekip çalışmasına ve insanlarla iletişim söz konusu olduğunda problem yaşamadan uyum sağlayabilirim.",
+            "about_en": "I enjoy experiencing new things and solving problems. Throughout my life, I have participated in many team sports. I can adapt seamlessly when it comes to teamwork and communication.",
             "languages": [
               { "lang": "İngilizce", "level": "B2" },
               { "lang": "Almanca", "level": "A2" },
@@ -29,6 +36,11 @@
               "Basketbol (3 Numara)",
               "Voleybol (4 Numara - Bölge İkinciliği)",
               "Tiyatro (Başrol - Senarist)"
+            ],
+            "hobbies_en": [
+              "Basketball (Number 3)",
+              "Volleyball (Number 4 - Regional Runner-up)",
+              "Theater (Lead Role - Screenwriter)"
             ]
           }
         }
@@ -37,34 +49,55 @@
     {
       "id": "experience",
       "label": "İş Deneyimi",
+      "label_en": "Work Experience",
       "tab": "DENEYİM",
+      "tab_en": "EXPERIENCE",
       "position": { "x": 35, "y": 8, "rotation": 3 },
       "color": "#b8926a",
       "pages": [
         {
           "type": "timeline",
           "heading": "Çalışma Kayıtları - Sayfa 1",
+          "heading_en": "Employment Records - Page 1",
           "items": [
             {
               "title": "System and Cloud Engineer",
+              "title_en": "System and Cloud Engineer",
               "org": "Armis Bilişim Teknolojileri A.Ş.",
+              "org_en": "Armis IT Technologies Inc.",
               "date": "Ocak 2026 - Devam Ediyor",
+              "date_en": "January 2026 - Present",
               "details": [
                 "Bulut altyapı ve sunucu sistemlerinin sıfırdan kurulumu, mimari yapılandırması ve yönetimi",
                 "UTMStack SIEM başta olmak üzere güvenlik, izleme ve loglama ürünlerinin kurulum ve entegrasyonu",
                 "Açık kaynak kodlu ürünlerde uzman düzeyinde kurulum, optimizasyon ve sistem sıkılaştırma",
                 "Düzenli zafiyet taramaları ve siber güvenlik testleri (sızma testleri)",
                 "Açık kaynaklı yeni sistemlerin araştırılması, test edilmesi ve canlı ortama alınması"
+              ],
+              "details_en": [
+                "From-scratch setup, architectural configuration, and management of cloud infrastructure and server systems",
+                "Installation and integration of security, monitoring, and logging products, primarily UTMStack SIEM",
+                "Expert-level installation, optimization, and system hardening of open-source products",
+                "Regular vulnerability scanning and cybersecurity testing (penetration testing)",
+                "Research, testing, and deployment of new open-source systems to production"
               ]
             },
             {
               "title": "Cloud Engineer / DevOps Engineer",
+              "title_en": "Cloud Engineer / DevOps Engineer",
               "org": "Infraguard Siber Güvenlik A.Ş.",
+              "org_en": "Infraguard Cybersecurity Inc.",
               "date": "Ağustos 2025 - Ocak 2026",
+              "date_en": "August 2025 - January 2026",
               "details": [
                 "Geliştirme ve operasyon süreçlerine entegre güvenlik yaklaşımları uygulama",
                 "Sistem açıklarının tespiti, pentest ve proaktif güvenlik çalışmaları",
                 "Altyapı direnci ve operasyonel güvenlik sağlama"
+              ],
+              "details_en": [
+                "Implementing integrated security approaches into development and operations processes",
+                "Identifying system vulnerabilities, penetration testing, and proactive security operations",
+                "Ensuring infrastructure resilience and operational security"
               ]
             }
           ]
@@ -72,11 +105,15 @@
         {
           "type": "timeline",
           "heading": "Çalışma Kayıtları - Sayfa 2",
+          "heading_en": "Employment Records - Page 2",
           "items": [
             {
               "title": "Cloud Engineer",
+              "title_en": "Cloud Engineer",
               "org": "NGN Bilgi Teknolojileri Veri Merkezi A.Ş.",
+              "org_en": "NGN Information Technologies Data Center Inc.",
               "date": "2021 - Ağustos 2025 (4 Yıl)",
+              "date_en": "2021 - August 2025 (4 Years)",
               "details": [
                 "Bulut altyapı kurulumu, optimizasyon, yük dengeleme ve HA çözümleri",
                 "Zabbix, Grafana, Elasticsearch, Graylog ile izleme/log sistemleri yönetimi",
@@ -84,24 +121,46 @@
                 "KOBIL projesinde Kubernetes altyapı yönetimi",
                 "HaProxy, Nginx, Apache, MySQL, PostgreSQL, MariaDB yönetimi",
                 "Müşteri ortamları için topoloji çıkartma ve healthcheck raporlama"
+              ],
+              "details_en": [
+                "Cloud infrastructure setup, optimization, load balancing, and HA solutions",
+                "Monitoring/logging system management with Zabbix, Grafana, Elasticsearch, Graylog",
+                "Defacto and ICA (from-scratch setup), Boyner (optimization) projects",
+                "Kubernetes infrastructure management for the KOBIL project",
+                "HaProxy, Nginx, Apache, MySQL, PostgreSQL, MariaDB management",
+                "Topology mapping and healthcheck reporting for customer environments"
               ]
             },
             {
               "title": "L1 Customer Support Engineer",
+              "title_en": "L1 Customer Support Engineer",
               "org": "NGN Bilgi Teknolojileri Veri Merkezi A.Ş.",
+              "org_en": "NGN Information Technologies Data Center Inc.",
               "date": "2021 (6 Ay)",
+              "date_en": "2021 (6 Months)",
               "details": [
                 "Zabbix/Grafana yapılandırması, NGN Cloud/AWS sunucu kurulum ve yönetimi",
                 "BSH servis masası dahil kritik müşteri destek taleplerinin yönetimi"
+              ],
+              "details_en": [
+                "Zabbix/Grafana configuration, NGN Cloud/AWS server setup and management",
+                "Managing critical customer support requests including BSH service desk"
               ]
             },
             {
               "title": "Stajyer",
+              "title_en": "Intern",
               "org": "NGN Bilgi Teknolojileri Veri Merkezi A.Ş.",
+              "org_en": "NGN Information Technologies Data Center Inc.",
               "date": "Eylül 2020 (5 Hafta)",
+              "date_en": "September 2020 (5 Weeks)",
               "details": [
                 "ESXi, Windows Server, FreeNAS ile sanallaştırma; Acronis ile yedekleme",
                 "Active Directory, Domain Controller, DNS/DHCP yönetimi"
+              ],
+              "details_en": [
+                "Virtualization with ESXi, Windows Server, FreeNAS; backup with Acronis",
+                "Active Directory, Domain Controller, DNS/DHCP management"
               ]
             }
           ]
@@ -111,31 +170,49 @@
     {
       "id": "education",
       "label": "Eğitim Kayıtları",
+      "label_en": "Education Records",
       "tab": "EĞİTİM",
+      "tab_en": "EDUCATION",
       "position": { "x": 62, "y": 15, "rotation": -2 },
       "color": "#a68b5b",
       "pages": [
         {
           "type": "timeline",
           "heading": "Eğitim Geçmişi",
+          "heading_en": "Education History",
           "items": [
             {
               "title": "Bilgisayar Mühendisliği",
+              "title_en": "Computer Engineering",
               "org": "Namık Kemal Üniversitesi",
+              "org_en": "Namik Kemal University",
               "date": "2015 - 2021 | GNO: 2.86",
+              "date_en": "2015 - 2021 | GPA: 2.86",
               "details": [
                 "Basketbol Takımı (3 Numara)",
                 "Voleybol Takımı (4 Numara)",
                 "Tiyatro Kulübü (Başrol - Senarist)"
+              ],
+              "details_en": [
+                "Basketball Team (Number 3)",
+                "Volleyball Team (Number 4)",
+                "Theater Club (Lead Role - Screenwriter)"
               ]
             },
             {
               "title": "Lise",
+              "title_en": "High School",
               "org": "Borçka Anadolu Lisesi - Artvin",
+              "org_en": "Borcka Anatolian High School - Artvin",
               "date": "2011 - 2015 | GNO: 80.60",
+              "date_en": "2011 - 2015 | GPA: 80.60",
               "details": [
                 "Voleybol Takımı (Bölge İkinciliği)",
                 "Basketbol Takımı"
+              ],
+              "details_en": [
+                "Volleyball Team (Regional Runner-up)",
+                "Basketball Team"
               ]
             }
           ]
@@ -145,31 +222,40 @@
     {
       "id": "projects",
       "label": "Proje Dosyaları",
+      "label_en": "Project Files",
       "tab": "PROJELER",
+      "tab_en": "PROJECTS",
       "position": { "x": 18, "y": 50, "rotation": 5 },
       "color": "#d4a853",
       "pages": [
         {
           "type": "cards",
           "heading": "Proje Kayıtları",
+          "heading_en": "Project Records",
           "items": [
             {
               "title": "Parmak İzi Tanıma",
+              "title_en": "Fingerprint Recognition",
               "tech": "MATLAB",
               "year": "2021",
-              "description": "MATLAB kullanarak, parmak izi tanıyabilen ve kimlik doğrulama üzerine kullanılabilen uygulama geliştirdim."
+              "description": "MATLAB kullanarak, parmak izi tanıyabilen ve kimlik doğrulama üzerine kullanılabilen uygulama geliştirdim.",
+              "description_en": "Developed an application using MATLAB that can recognize fingerprints and be used for identity verification."
             },
             {
               "title": "Plaka Okuma Sistemi",
+              "title_en": "License Plate Reader",
               "tech": "Python",
               "year": "2020",
-              "description": "Python programlama dili ile 'tesseract' kütüphanesi kullanarak araçların plakasını tanımlayabilen bir proje."
+              "description": "Python programlama dili ile 'tesseract' kütüphanesi kullanarak araçların plakasını tanımlayabilen bir proje.",
+              "description_en": "A project using the Python programming language with the 'tesseract' library to identify vehicle license plates."
             },
             {
               "title": "Fabrika Otomasyonu",
+              "title_en": "Factory Automation",
               "tech": "C#",
               "year": "2019",
-              "description": "Üretim ve stok takibini kolaylaştıran bir otomasyonu ekip çalışması ile tasarladık."
+              "description": "Üretim ve stok takibini kolaylaştıran bir otomasyonu ekip çalışması ile tasarladık.",
+              "description_en": "Designed an automation system for production and inventory tracking as a team project."
             }
           ]
         }
@@ -178,40 +264,50 @@
     {
       "id": "skills",
       "label": "Yetenekler",
+      "label_en": "Skills",
       "tab": "YETENEK",
+      "tab_en": "SKILLS",
       "position": { "x": 50, "y": 45, "rotation": -3 },
       "color": "#c9a962",
       "pages": [
         {
           "type": "grid",
           "heading": "Teknik Beceriler",
+          "heading_en": "Technical Skills",
           "categories": [
             {
               "name": "Cloud & Sanallaştırma",
+              "name_en": "Cloud & Virtualization",
               "items": ["AWS", "Huawei Cloud", "VMware", "Windows Server", "FreeNAS"]
             },
             {
               "name": "İzleme & Loglama",
+              "name_en": "Monitoring & Logging",
               "items": ["Zabbix", "Grafana", "Elasticsearch", "Graylog", "Filebeat"]
             },
             {
               "name": "İşletim Sistemleri",
+              "name_en": "Operating Systems",
               "items": ["Linux", "Windows Server"]
             },
             {
               "name": "Scripting & Programlama",
+              "name_en": "Scripting & Programming",
               "items": ["Shell Scripting", "Python", "C & C++", "C#", "MATLAB"]
             },
             {
               "name": "Veritabanları",
+              "name_en": "Databases",
               "items": ["MySQL", "PostgreSQL", "MariaDB"]
             },
             {
               "name": "Web & Ağ",
+              "name_en": "Web & Networking",
               "items": ["Nginx", "Apache", "HaProxy", "Active Directory", "DNS/DHCP"]
             },
             {
               "name": "Diğer",
+              "name_en": "Other",
               "items": ["Acronis", "Topoloji Çıkartma", "UI Design", "Adobe Photoshop", "Video Editleme"]
             }
           ]
@@ -221,13 +317,16 @@
     {
       "id": "contact",
       "label": "İletişim",
+      "label_en": "Contact",
       "tab": "İLETİŞİM",
+      "tab_en": "CONTACT",
       "position": { "x": 75, "y": 48, "rotation": 2 },
       "color": "#b89a5e",
       "pages": [
         {
           "type": "links",
           "heading": "İletişim Bilgileri",
+          "heading_en": "Contact Information",
           "contact": {
             "email": "tunahanhusem@gmail.com"
           },
@@ -247,7 +346,9 @@
     {
       "id": "secret",
       "label": "GİZLİ DOSYA",
+      "label_en": "SECRET FILE",
       "tab": "???",
+      "tab_en": "???",
       "position": { "x": 82, "y": 70, "rotation": 8 },
       "color": "#8b0000",
       "hidden": true,
@@ -255,6 +356,7 @@
         {
           "type": "secret",
           "heading": "SINIFLANDIRILMIŞ BİLGİ",
+          "heading_en": "CLASSIFIED INFORMATION",
           "content": {
             "funFacts": [
               "3 dil öğreniyor: İngilizce, Almanca ve Korece",
@@ -263,7 +365,15 @@
               "Açık kaynak tutkunu - sistemleri sıfırdan kurmayı sever",
               "Bulut mimarisi ve siber güvenlik çift yönlü uzmanlaşma"
             ],
-            "motto": "Sorunları çözmek benim işim."
+            "funFacts_en": [
+              "Learning 3 languages: English, German, and Korean",
+              "Both lead actor and screenwriter in theater",
+              "Won regional runner-up in volleyball",
+              "Open-source enthusiast - loves building systems from scratch",
+              "Dual specialization in cloud architecture and cybersecurity"
+            ],
+            "motto": "Sorunları çözmek benim işim.",
+            "motto_en": "Solving problems is my business."
           }
         }
       ]
@@ -271,23 +381,27 @@
   ],
   "newspaper": {
     "headline": "ARANIYOR",
+    "headline_en": "WANTED",
     "subtitle": "Sistem ve Bulut Mühendisi Aranıyor",
+    "subtitle_en": "System and Cloud Engineer Wanted",
     "name": "Tunahan HÜSEM",
     "title": "Bilgisayar Mühendisi",
+    "title_en": "Computer Engineer",
     "description": "5+ yıl deneyimli Cloud & DevOps uzmanı. Siber güvenlik, bulut altyapı ve açık kaynak sistemlerde uzmanlaşmış.",
+    "description_en": "Cloud & DevOps expert with 5+ years of experience. Specialized in cybersecurity, cloud infrastructure, and open-source systems.",
     "skills": ["AWS", "Kubernetes", "Linux", "Python", "Zabbix", "Grafana"],
     "contact": "tunahanhusem@gmail.com"
   },
   "evidenceBoard": {
     "nodes": [
-      { "id": "person", "type": "photo", "label": "Tunahan HÜSEM", "x": 50, "y": 10, "desc": "Bilgisayar Mühendisi — 5+ yıl deneyim" },
-      { "id": "cloud", "type": "skill", "label": "Cloud & DevOps", "x": 20, "y": 35, "desc": "AWS, Huawei Cloud, VMware, Kubernetes" },
-      { "id": "security", "type": "skill", "label": "Siber Güvenlik", "x": 80, "y": 35, "desc": "Sızma testleri, zafiyet taraması, UTMStack SIEM" },
-      { "id": "monitoring", "type": "skill", "label": "İzleme & Loglama", "x": 50, "y": 35, "desc": "Zabbix, Grafana, Elasticsearch, Graylog" },
-      { "id": "armis", "type": "job", "label": "Armis Bilişim\\nSystem & Cloud Eng.", "x": 15, "y": 65, "desc": "Bulut altyapı kurulumu ve güvenlik entegrasyonu" },
-      { "id": "infraguard", "type": "job", "label": "Infraguard\\nCloud & DevOps Eng.", "x": 50, "y": 65, "desc": "DevSecOps ve proaktif güvenlik çalışmaları" },
-      { "id": "ngn", "type": "job", "label": "NGN (4 Yıl)\\nCloud Engineer", "x": 85, "y": 65, "desc": "HA çözümleri, yük dengeleme, müşteri projeleri" },
-      { "id": "edu", "type": "edu", "label": "NKÜ\\nBilgisayar Müh.", "x": 50, "y": 90, "desc": "2015-2021, GNO: 2.86" }
+      { "id": "person", "type": "photo", "label": "Tunahan HÜSEM", "label_en": "Tunahan HÜSEM", "x": 50, "y": 10, "desc": "Bilgisayar Mühendisi — 5+ yıl deneyim", "desc_en": "Computer Engineer — 5+ years experience" },
+      { "id": "cloud", "type": "skill", "label": "Cloud & DevOps", "label_en": "Cloud & DevOps", "x": 20, "y": 35, "desc": "AWS, Huawei Cloud, VMware, Kubernetes", "desc_en": "AWS, Huawei Cloud, VMware, Kubernetes" },
+      { "id": "security", "type": "skill", "label": "Siber Güvenlik", "label_en": "Cybersecurity", "x": 80, "y": 35, "desc": "Sızma testleri, zafiyet taraması, UTMStack SIEM", "desc_en": "Penetration testing, vulnerability scanning, UTMStack SIEM" },
+      { "id": "monitoring", "type": "skill", "label": "İzleme & Loglama", "label_en": "Monitoring & Logging", "x": 50, "y": 35, "desc": "Zabbix, Grafana, Elasticsearch, Graylog", "desc_en": "Zabbix, Grafana, Elasticsearch, Graylog" },
+      { "id": "armis", "type": "job", "label": "Armis Bilişim\\nSystem & Cloud Eng.", "label_en": "Armis IT\\nSystem & Cloud Eng.", "x": 15, "y": 65, "desc": "Bulut altyapı kurulumu ve güvenlik entegrasyonu", "desc_en": "Cloud infrastructure setup and security integration" },
+      { "id": "infraguard", "type": "job", "label": "Infraguard\\nCloud & DevOps Eng.", "label_en": "Infraguard\\nCloud & DevOps Eng.", "x": 50, "y": 65, "desc": "DevSecOps ve proaktif güvenlik çalışmaları", "desc_en": "DevSecOps and proactive security operations" },
+      { "id": "ngn", "type": "job", "label": "NGN (4 Yıl)\\nCloud Engineer", "label_en": "NGN (4 Years)\\nCloud Engineer", "x": 85, "y": 65, "desc": "HA çözümleri, yük dengeleme, müşteri projeleri", "desc_en": "HA solutions, load balancing, customer projects" },
+      { "id": "edu", "type": "edu", "label": "NKÜ\\nBilgisayar Müh.", "label_en": "NKU\\nComputer Eng.", "x": 50, "y": 90, "desc": "2015-2021, GNO: 2.86", "desc_en": "2015-2021, GPA: 2.86" }
     ],
     "connections": [
       { "from": "person", "to": "cloud" },
@@ -302,8 +416,8 @@
   },
   "decorations": {
     "stickyNotes": [
-      { "text": "Şüpheli: Sistem Mühendisi\nDikkat: Tehlikeli derecede yetenekli", "position": { "x": 3, "y": 75 }, "color": "#f7e47a", "rotation": -3 },
-      { "text": "Not: Her şey göründüğü\ngibi değildir...", "position": { "x": 88, "y": 5 }, "color": "#ff9e80", "rotation": 5 }
+      { "text": "Şüpheli: Sistem Mühendisi\nDikkat: Tehlikeli derecede yetenekli", "text_en": "Suspect: System Engineer\nWarning: Dangerously talented", "position": { "x": 3, "y": 75 }, "color": "#f7e47a", "rotation": -3 },
+      { "text": "Not: Her şey göründüğü\ngibi değildir...", "text_en": "Note: Not everything is\nas it seems...", "position": { "x": 88, "y": 5 }, "color": "#ff9e80", "rotation": 5 }
     ]
   }
 }

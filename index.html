@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,10 +29,10 @@
   <div id="intro-overlay">
     <div class="intro-content">
       <div class="intro-lamp"></div>
-      <h1>DOSYA İNCELEME MASASI</h1>
-      <p class="intro-subtitle">Şüpheli: Tunahan HÜSEM</p>
-      <p class="intro-hint">Masadaki dosyaları açarak soruşturmaya başlayın</p>
-      <button id="intro-start">SORUŞTURMAYI BAŞLAT</button>
+      <h1 data-i18n="intro.title">CASE FILE INVESTIGATION DESK</h1>
+      <p class="intro-subtitle" data-i18n="intro.subtitle">Suspect: Tunahan HÜSEM</p>
+      <p class="intro-hint" data-i18n="intro.hint">Open the files on the desk to start the investigation</p>
+      <button id="intro-start" data-i18n="intro.start">START INVESTIGATION</button>
     </div>
   </div>
 
@@ -59,18 +59,18 @@
       <div class="compartment-inside">
         <div class="embedded-screen">
           <div class="terminal-lines">
-            <div class="term-line" data-delay="0">$ sistem_tarama --başlat</div>
-            <div class="term-line" data-delay="600">> Cihaz algılandı...</div>
-            <div class="term-line" data-delay="1200">> Yetkilendirme gerekli.</div>
-            <div class="term-line" data-delay="1800">> USB anahtar bekleniyor...</div>
+            <div class="term-line" data-delay="0" data-i18n="terminal.scan">$ system_scan --start</div>
+            <div class="term-line" data-delay="600" data-i18n="terminal.detected">> Device detected...</div>
+            <div class="term-line" data-delay="1200" data-i18n="terminal.auth">> Authorization required.</div>
+            <div class="term-line" data-delay="1800" data-i18n="terminal.waiting">> Waiting for USB key...</div>
           </div>
           <div class="terminal-post hidden" id="terminal-post">
-            <div class="term-line success">> USB doğrulandı.</div>
-            <div class="term-line success">> Kimlik: TUNAHAN HÜSEM</div>
-            <div class="term-line success">> Yetki seviyesi: TAM ERİŞİM</div>
-            <div class="term-line success">> Gizli dosya kilidi açılıyor...</div>
+            <div class="term-line success" data-i18n="terminal.verified">> USB verified.</div>
+            <div class="term-line success" data-i18n="terminal.identity">> Identity: TUNAHAN HÜSEM</div>
+            <div class="term-line success" data-i18n="terminal.access">> Authorization level: FULL ACCESS</div>
+            <div class="term-line success" data-i18n="terminal.unlock">> Unlocking secret file...</div>
           </div>
-          <div id="panel-status" class="panel-status">ERİŞİM BEKLENİYOR...</div>
+          <div id="panel-status" class="panel-status" data-i18n="terminal.pending">ACCESS PENDING...</div>
         </div>
         <!-- USB port embedded in compartment wall -->
         <div id="usb-port" class="usb-port">
@@ -84,7 +84,7 @@
     <div id="secret-compartment" class="secret-compartment hidden">
       <div id="secret-lid" class="secret-lid">
         <div class="lid-groove"></div>
-        <span class="lid-text">GİZLİ</span>
+        <span class="lid-text" data-i18n="folder.secret">SECRET</span>
         <div class="lid-groove"></div>
       </div>
       <div class="secret-inside" id="secret-inside">
@@ -102,21 +102,21 @@
     </div>
     <div id="document-overlay" class="hidden">
       <div id="document-modal">
-        <button id="doc-close" title="Kapat">&times;</button>
+        <button id="doc-close" title="Close">&times;</button>
         <div id="doc-header"></div>
         <div id="doc-pages-container">
           <div id="doc-pages"></div>
         </div>
         <div id="doc-nav">
-          <button id="doc-prev" class="doc-nav-btn" disabled>&laquo; Önceki</button>
+          <button id="doc-prev" class="doc-nav-btn" data-i18n="doc.prev" disabled>&laquo; Previous</button>
           <span id="doc-page-info"></span>
-          <button id="doc-next" class="doc-nav-btn">Sonraki &raquo;</button>
+          <button id="doc-next" class="doc-nav-btn" data-i18n="doc.next">Next &raquo;</button>
         </div>
       </div>
     </div>
   </div>
 
-  <button id="sound-toggle" title="Ses Aç/Kapa">
+  <button id="sound-toggle" data-i18n-title="sound.toggle" title="Toggle Sound">
     <span class="sound-on">&#128266;</span>
     <span class="sound-off hidden">&#128263;</span>
   </button>

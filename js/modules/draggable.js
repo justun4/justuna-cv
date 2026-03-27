@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { getNextZ } from './desk.js';
 import { playSound, stopSound } from './sounds.js';
+import { openDocument } from './documents.js';
 
 gsap.registerPlugin(Draggable);
 
@@ -10,15 +11,20 @@ let draggables = [];
 export function initDraggable(folderElements) {
   draggables = [];
 
-  folderElements.forEach(({ el }) => {
+  folderElements.forEach(({ el, data }) => {
     const d = Draggable.create(el, {
       type: 'x,y',
       bounds: '#desk-surface',
       edgeResistance: 0.65,
       cursor: 'grab',
       activeCursor: 'grabbing',
+      minimumMovement: 3,
       onPress() {
         el.style.zIndex = getNextZ();
+      },
+      onClick() {
+        // GSAP fires onClick only when no drag occurred
+        openDocument(data);
       },
       onDragStart() {
         playSound('paper-shuffle');
