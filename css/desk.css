@@ -163,8 +163,7 @@
   font-family: var(--font-typewriter);
   font-size: 1rem;
   letter-spacing: 4px;
-  text-indent: 4px;
-  padding: 15px 40px;
+  padding: 15px 40px 15px 44px;
   background: transparent;
   color: var(--color-gold);
   border: 1px solid var(--color-gold);

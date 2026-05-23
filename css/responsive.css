@@ -33,14 +33,6 @@
     top: -16px;
   }
 
-  .folder-tab span {
-    font-size: 0.45rem;
-  }
-
-  .folder-label {
-    font-size: 0.55rem;
-  }
-
   .folder-stamp {
     font-size: 0.4rem;
     padding: 1px 4px;
@@ -265,8 +257,6 @@
   /* --- Folders --- */
   .folder { width: 110px; height: 80px; }
   .folder-tab { width: 62px; height: 18px; top: -14px; }
-  .folder-tab span { font-size: 0.4rem; }
-  .folder-label { font-size: 1.1rem; }
 
   .folder-stamp {
     display: none;
@@ -378,8 +368,6 @@
   /* --- Folders --- */
   .folder { width: 95px; height: 68px; }
   .folder-tab { width: 55px; height: 16px; top: -12px; }
-  .folder-tab span { font-size: 0.35rem; }
-  .folder-label { font-size: 0.9rem; }
   .folder-stamp { display: none; }
 
   /* --- Buttons --- */
